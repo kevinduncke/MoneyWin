@@ -1,0 +1,22 @@
+{
+  "name": "moneywin",
+  "version": "1.0.0",
+  "description": "MoneyWin is a Mobile Wallet Application",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [
+    "Money",
+    "Win",
+    "MoneyWin",
+    "Wallet",
+    "Personal",
+    "Accounting",
+    "Salary",
+    "Income",
+    "Finance"
+  ],
+  "author": "Kevin Duncke",
+  "license": "MIT"
+}
