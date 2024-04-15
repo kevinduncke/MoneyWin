@@ -19,5 +19,8 @@
     "platforms": [
       "android"
     ]
+  },
+  "dependencies": {
+    "cordova-plugin-splashscreen": "^6.0.2"
   }
 }

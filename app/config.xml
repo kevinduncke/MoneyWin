@@ -1,11 +1,20 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.moneywin.app" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.moneywin.app" version="1.0.0" xmlns="http://www.w3.org/ns/widgets"
+    xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>MoneyWin</name>
-    <description>Sample Apache Cordova App</description>
-    <author email="dev@cordova.apache.org" href="https://cordova.apache.org">
-        Apache Cordova Team
-    </author>
+    <description>App</description>
+    <author email="kevinduncke@gmail.com" href="https://kevinduncke.com">Kevin Duncke</author>
     <content src="index.html" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
+    <platform name="android">
+        <preference name="AndroidWindowSplashScreenAnimatedIcon"
+            value="res/screen/android/splashscreen.xml" />
+        <preference name="AndroidWindowSplashScreenBackground" value="#FFFFFF" />
+        <icon src="res/screen/android/mipmap-hdpi/ic_launcher_round.webp" density="ldpi"/>
+        <icon src="res/screen/android/mipmap-mdpi/ic_launcher_round.webp" density="mdpi"/>
+        <icon src="res/screen/android/mipmap-xhdpi/ic_launcher_round.webp" density="xhdpi"/>
+        <icon src="res/screen/android/mipmap-xxhdpi/ic_launcher_round.webp" density="xxhdpi"/>
+        <icon src="res/screen/android/mipmap-xxxhdpi/ic_launcher_round.webp" density="xxxhdpi"/>
+    </platform>
 </widget>
