@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <!--
+  <head>
+    <meta charset="utf-8" />
+    <!--
         Customize this policy to fit your own app's needs. For more guidance, please refer to the docs:
             https://cordova.apache.org/docs/en/latest/
         Some notes:
@@ -10,29 +10,79 @@
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
-        <meta name="color-scheme" content="light dark">
-        <link rel="stylesheet" href="css/index.css">
-        <title>MoneyWin</title>
-    </head>
-    <body>
-        <div class="app">
-            <div class="app_logo">
-                <img id="logo" src="img/moneywin.svg" alt="MoneyWin logo">
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self' data: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;"
+    />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta
+      name="viewport"
+      content="initial-scale=1, width=device-width, viewport-fit=cover"
+    />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/logo.css" />
+    <link rel="stylesheet" href="css/login.css" />
+    <title>MoneyWin</title>
+  </head>
+  <body>
+    <div class="app">
+      <div class="app_logo">
+        <img id="logo" src="img/MoneyWin.svg" alt="MoneyWin logo" />
+      </div>
+      <!-- LOGIN -->
+      <div class="app_login">
+        <h1>Welcome Back!</h1>
+        <form onsubmit="return false" class="login-form">
+          <div class="login-box-input">
+            <label for="username" class="login-labels">Username</label>
+            <br />
+            <input
+              type="text"
+              name="username"
+              id="login-username"
+              class="login-inputs"
+              autocomplete="username"
+              required
+            />
+          </div>
+          <div class="login-box-input">
+            <label for="password" class="login-labels">Password</label>
+            <br />
+            <input
+              type="password"
+              name="password"
+              id="login-password"
+              class="login-inputs"
+              autocomplete="current-password"
+              required
+            />
+          </div>
+          <div class="login-box-input box-checkbox">
+            <div class="sbox-checkbox">
+              <input
+                type="checkbox"
+                name="remember"
+                id="login-remember"
+                style="accent-color: #22B573"
+              />
+              <label for="remember" class="login-labels">Remember me</label>
             </div>
-            <div class="app_login">
-                // SIGN IN LAYOUT
-                // - INPUTS
-                // - BUTTON
-                // - LINKS
-
-                // SIGN IN STATUS
-                // - MESSAGE + ANIMATION
+            <div>
+              <a href="./pages/recovery.html" class="login-a"
+                >Forgot Password?</a
+              >
             </div>
+          </div>
+          <button type="submit" class="login-button">Sign in</button>
+        </form>
+        <div class="login-box-signup">
+          <span>Don't have an account?</span>
+          <a href="./pages/signup.html" class="login-a">Sign Up</a>
         </div>
-        <script src="js/index.js"></script>
-    </body>
+      </div>
+    </div>
+    <script src="js/index.js"></script>
+  </body>
 </html>
