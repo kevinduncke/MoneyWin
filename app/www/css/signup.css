@@ -1,0 +1,19 @@
+#app-signup {
+  display: block;
+  text-align: center;
+}
+.signup-form {
+  text-align: left;
+  margin: 0 15px;
+}
+.signup-box-input {
+  margin: 15px 0;
+}
+.signup-box-signin {
+  margin: 40px 0;
+  font-family: "Poppins Medium";
+  font-size: 12px;
+}
+#app-signup-status {
+  display: none;
+}

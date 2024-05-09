@@ -23,6 +23,7 @@
     <meta name="color-scheme" content="light dark" />
     <link rel="stylesheet" href="css/index.css" />
     <link rel="stylesheet" href="css/logo.css" />
+    <link rel="stylesheet" href="css/global.css" />
     <link rel="stylesheet" href="css/login.css" />
     <title>MoneyWin</title>
   </head>
@@ -32,32 +33,56 @@
         <img id="logo" src="img/MoneyWin.svg" alt="MoneyWin logo" />
       </div>
       <!-- LOGIN -->
-      <div class="app_login">
-        <h1>Welcome Back!</h1>
+      <div id="app-login">
+        <h1 class="g-h1">Welcome Back!</h1>
         <form onsubmit="return false" class="login-form">
           <div class="login-box-input">
-            <label for="username" class="login-labels">Username</label>
+            <label for="username" class="g-labels">Username</label>
             <br />
-            <input
-              type="text"
-              name="username"
-              id="login-username"
-              class="login-inputs"
-              autocomplete="username"
-              required
-            />
+            <div class="g-input-boxs">
+              <input
+                type="text"
+                name="username"
+                id="login-username"
+                class="g-inputs"
+                autocomplete="username"
+                required
+              />
+              <img
+                class="g-input-view inputview-open-icon"
+                src="./img/eye-regular.svg"
+                alt="show-password"
+              />
+              <img
+                class="g-input-view inputview-close-icon"
+                src="./img/eye-slash-regular.svg"
+                alt="hide-password"
+              />
+            </div>
           </div>
           <div class="login-box-input">
-            <label for="password" class="login-labels">Password</label>
+            <label for="password" class="g-labels">Password</label>
             <br />
-            <input
-              type="password"
-              name="password"
-              id="login-password"
-              class="login-inputs"
-              autocomplete="current-password"
-              required
-            />
+            <div class="g-input-boxs">
+              <input
+                type="password"
+                name="password"
+                id="login-password"
+                class="g-inputs"
+                autocomplete="current-password"
+                required
+              />
+              <img
+                class="g-input-view inputview-open-icon"
+                src="./img/eye-regular.svg"
+                alt="show-password"
+              />
+              <img
+                class="g-input-view inputview-close-icon"
+                src="./img/eye-slash-regular.svg"
+                alt="hide-password"
+              />
+            </div>
           </div>
           <div class="login-box-input box-checkbox">
             <div class="sbox-checkbox">
@@ -65,22 +90,30 @@
                 type="checkbox"
                 name="remember"
                 id="login-remember"
-                style="accent-color: #22B573"
+                style="accent-color: #22b573"
               />
-              <label for="remember" class="login-labels">Remember me</label>
+              <label for="remember" class="g-labels">Remember me</label>
             </div>
             <div>
-              <a href="./pages/recovery.html" class="login-a"
+              <a href="./pages/recovery.html" class="g-anchor"
                 >Forgot Password?</a
               >
             </div>
           </div>
-          <button type="submit" class="login-button">Sign in</button>
+          <button type="submit" class="g-buttons">Sign in</button>
         </form>
         <div class="login-box-signup">
           <span>Don't have an account?</span>
-          <a href="./pages/signup.html" class="login-a">Sign Up</a>
+          <a href="./pages/signup.html" class="g-anchor">Sign Up</a>
         </div>
+      </div>
+      <div id="app-login-status" class="g-status">
+        <h1>Login Successful!</h1>
+        <img
+          class="g-status-icon"
+          src="./img/circle-check-regular.svg"
+          alt="circle-check"
+        />
       </div>
     </div>
     <script src="js/index.js"></script>
