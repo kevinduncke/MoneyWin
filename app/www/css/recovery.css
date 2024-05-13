@@ -1,0 +1,44 @@
+#app-recovery {
+  text-align: center;
+  display: block;
+}
+.recovery-form {
+  text-align: left;
+  margin: 45px 15px;
+}
+.recovery-box-input {
+  margin: 30px 0;
+  display: flex;
+  justify-content: center;
+  column-gap: 30px;
+  align-items: center;
+}
+.recovery-radios {
+  display: flex;
+  align-items: center;
+}
+
+#app-recovery-code {
+  text-align: center;
+  display: none;
+}
+.recovery-code-input {
+  width: 100%;
+}
+
+
+#app-recovery-status {
+  display: none;
+}
+#recovery-status-divp {
+  margin: 45px 0;
+}
+.recovery-status-p {
+  font-family: "Poppins Medium";
+  color: black;
+  font-size: 12px;
+}
+.recovery-status-p:nth-last-child(1){
+  font-family: "Poppins Bold";
+}
+
