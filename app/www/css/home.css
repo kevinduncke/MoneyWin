@@ -1,0 +1,101 @@
+.app-home {
+  display: block;
+}
+#home-status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #59bd85;
+  color: #ffffff;
+  padding: 20px 15px;
+}
+#home-status-bar p {
+  font-family: "Poppins Medium";
+  font-size: 13px;
+  margin: 3px 0;
+}
+#home-status-bar div:nth-last-child(1){
+  text-align: right;
+}
+
+#home-dateview {
+  margin: 40px 0;
+  display: flex;
+  justify-content: center;
+}
+.home-filter-btn {
+  background-color: transparent;
+  border: none;
+  font-family: 'Poppins Bold';
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 10px;
+}
+.home-filter-btn img {
+  height: 25px;
+  width: auto;
+}
+
+#home-balanceview {
+  margin: 0 15px;
+}
+.home-bv-items {
+  padding: 15px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.bvi-brd {
+  border-bottom: 1px solid #EAEAEA;
+}
+.home-bv-items span {
+  font-family: 'Poppins Medium';
+  font-size: 14px;
+  text-transform: uppercase;
+}
+#bvi-account{
+  color: #0EA85F;
+}
+#bvi-bills {
+  color: #A80303;
+}
+#bvi-credit {
+  color: #0884AC;
+}
+
+#home-functions {
+  margin: 35px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 18px;
+}
+.fn-btns {
+  background-color: #82C392;
+  text-align: center;
+  width: 100%;
+  padding: 15px 5px;
+  border-radius: 10px;
+}
+.fn-btns img {
+  height: 20px;
+  width: auto;
+}
+.fn-btns p {
+  color: #FFFFFF;
+  font-family: 'Poppins Light';
+  font-size: 12px;
+  text-transform: uppercase;
+  margin: 5px 0 0 0;
+}
+
+/*-----------------------------------*/
+.app_logo {
+  margin: 50px 0;
+}
+/*-----------------------------------*/
