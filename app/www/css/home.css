@@ -14,20 +14,20 @@
   font-size: 13px;
   margin: 3px 0;
 }
-#home-status-bar div:nth-last-child(1){
+#home-status-bar div:nth-last-child(1) {
   text-align: right;
 }
 
 #home-dateview {
-  margin: 40px 0;
+  margin: 30px 0;
   display: flex;
   justify-content: center;
 }
 .home-filter-btn {
   background-color: transparent;
   border: none;
-  font-family: 'Poppins Bold';
-  font-size: 18px;
+  font-family: "Poppins Bold";
+  font-size: 16px;
   text-transform: uppercase;
   letter-spacing: 1px;
   color: #000000;
@@ -37,7 +37,7 @@
   column-gap: 10px;
 }
 .home-filter-btn img {
-  height: 25px;
+  height: 20px;
   width: auto;
 }
 
@@ -51,21 +51,21 @@
   justify-content: space-between;
 }
 .bvi-brd {
-  border-bottom: 1px solid #EAEAEA;
+  border-bottom: 1px solid #eaeaea;
 }
 .home-bv-items span {
-  font-family: 'Poppins Medium';
+  font-family: "Poppins Medium";
   font-size: 14px;
   text-transform: uppercase;
 }
-#bvi-account{
-  color: #0EA85F;
+#bvi-account {
+  color: #0ea85f;
 }
 #bvi-bills {
-  color: #A80303;
+  color: #a80303;
 }
 #bvi-credit {
-  color: #0884AC;
+  color: #0884ac;
 }
 
 #home-functions {
@@ -75,24 +75,43 @@
   justify-content: space-between;
   column-gap: 18px;
 }
-.fn-btns {
-  background-color: #82C392;
-  text-align: center;
+.fn-links {
+  background: transparent;
+  text-decoration: none;
   width: 100%;
+}
+.fn-btns-div {
+  background-color: #82c392;
+  text-align: center;
   padding: 15px 5px;
   border-radius: 10px;
 }
-.fn-btns img {
+.fn-btns-div img {
   height: 20px;
   width: auto;
 }
-.fn-btns p {
-  color: #FFFFFF;
-  font-family: 'Poppins Light';
+.fn-btns-div p {
+  color: #ffffff;
+  font-family: "Poppins Light";
   font-size: 12px;
   text-transform: uppercase;
   margin: 5px 0 0 0;
 }
+
+#home-movements {
+  margin: 35px 15px;
+}
+.mv-t-link {
+  font-size: 16px;
+  text-transform: uppercase;
+  font-family: 'Poppins Bold';
+  letter-spacing: 1px;
+  color: black;
+}
+.mv-table {
+  margin: 20px 0 0 0;
+}
+
 
 /*-----------------------------------*/
 .app_logo {

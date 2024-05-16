@@ -21,6 +21,7 @@
     ]
   },
   "dependencies": {
+    "bootstrap": "^5.3.3",
     "cordova-plugin-splashscreen": "^6.0.2"
   }
 }
