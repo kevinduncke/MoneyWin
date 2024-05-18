@@ -1,0 +1,35 @@
+.app-navbar {
+  background-color: white;
+  height: 85px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  z-index: 1;
+  box-shadow: 1px -1px 35px 5px rgb(230, 230, 230);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  column-gap: 15px;
+}
+
+.navbar-divbtn {
+  text-align: center;
+}
+
+.navbar-divbtn svg {
+  height: 24px;
+  width: auto;
+}
+
+.navbar-divbtn p {
+  font-family: 'Poppins Bold';
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #777777;
+  margin: 10px 0 0 0;
+}
+
+.nb-active {
+  color: #22B573!important;
+  fill: #22B573;
+} 
