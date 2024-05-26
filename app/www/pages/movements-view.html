@@ -1,18 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self' data: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;"
-    />
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="msapplication-tap-highlight" content="no" />
-    <meta
-      name="viewport"
-      content="initial-scale=1, width=device-width, viewport-fit=cover"
-    />
-    <meta name="color-scheme" content="light dark" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
       href="../../node_modules/bootstrap/dist/css/bootstrap.min.css"
@@ -21,14 +11,15 @@
     <link rel="stylesheet" href="../css/logo.css" />
     <link rel="stylesheet" href="../css/global.css" />
     <link rel="stylesheet" href="../css/home.css" />
+    <link rel="stylesheet" href="../css/movements.css" />
     <link rel="stylesheet" href="../css/navbar.css" />
-    <title>Home | MoneyWin</title>
+    <title>Movements | MoneyWin</title>
   </head>
   <body>
     <div class="app_logo">
       <img id="logo" src="../img/MoneyWin.svg" alt="MoneyWin logo" />
     </div>
-    <div class="app-home">
+    <div class="app-movements-view">
       <div id="home-status-bar">
         <div>
           <p>Hello</p>
@@ -39,57 +30,12 @@
           <p id="home-time">10:12 PM</p>
         </div>
       </div>
-      <div id="home-dateview">
-        <button class="home-filter-btn">
-          <span id="home-month-filter">February</span>
-          <img src="../img/chevron-down-solid.svg" alt="chevron-down" />
-        </button>
-      </div>
-      <div id="home-balanceview">
-        <div class="home-bv-items bvi-brd">
-          <span>Account Balance</span>
-          <span id="bvi-account">$82,000.00</span>
-        </div>
-        <div class="home-bv-items bvi-brd">
-          <span>Bills | Total</span>
-          <span id="bvi-bills">$110,000.00</span>
-        </div>
-        <div class="home-bv-items">
-          <span>Bills | Credit Card</span>
-          <span id="bvi-credit">$56,000.00</span>
-        </div>
-      </div>
-      <div id="home-functions">
-        <a class="fn-links">
-          <div class="fn-btns-div">
-            <img src="../img/lightbulb-regular.svg" alt="Services" />
-            <p>Services</p>
-          </div>
-        </a>
-        <a class="fn-links">
-          <div class="fn-btns-div">
-            <img src="../img/credit-card-regular.svg" alt="Cards" />
-            <p>Cards</p>
-          </div>
-        </a>
-        <a class="fn-links">
-          <div class="fn-btns-div">
-            <img src="../img/mug-hot-solid.svg" alt="Others" />
-            <p>Others</p>
-          </div>
-        </a>
-        <a class="fn-links">
-          <div class="fn-btns-div">
-            <img src="../img/scale-balanced-solid.svg" alt="Taxes" />
-            <p>Taxes</p>
-          </div>
-        </a>
-      </div>
-      <div id="home-movements">
-        <a href="./movements-view.html" class="g-anchor mv-t-link">Last Movements</a>
+      <div id="home-tableview">
+        <h1 class="g-h1">Category</h1>
         <table class="table table-striped mv-table">
           <thead>
             <tr>
+              <th scope="col">/</th>
               <th scope="col">#</th>
               <th scope="col">Detail</th>
               <th scope="col">Date</th>
@@ -98,19 +44,52 @@
           </thead>
           <tbody>
             <tr>
-              <th scope="row">1</th>
+              <th scope="row">
+                <input type="checkbox" name="check-1" id="check-1" />
+              </th>
+              <th>1</th>
               <td>Supermarket BigBuy</td>
               <td>03/18/2024</td>
               <td>$100.00</td>
             </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Night Bar | 2x Beer</td>
-              <td>03/02/2024</td>
-              <td>$20.00</td>
-            </tr>
           </tbody>
         </table>
+      </div>
+      <div id="g-btns">
+        <button class="g-home-btns">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="#A80303"
+            class="bi bi-trash3"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"
+            />
+          </svg>
+          <p>Delete</p>
+        </button>
+        <button class="g-home-btns">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="#0884AC"
+            class="bi bi-pencil-square"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"
+            />
+            <path
+              fill-rule="evenodd"
+              d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"
+            />
+          </svg>
+          <p>Edit</p>
+        </button>
       </div>
     </div>
     <div class="app-navbar">
@@ -121,14 +100,14 @@
             width="16"
             height="16"
             fill="#777777"
-            class="bi bi-house-door nb-active"
+            class="bi bi-house-door"
             viewBox="0 0 16 16"
           >
             <path
               d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z"
             />
           </svg>
-          <p class="nb-active">Home</p>
+          <p>Home</p>
         </a>
       </div>
       <div class="navbar-divbtn">

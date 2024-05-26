@@ -68,3 +68,30 @@
   height: auto;
   margin-top: 30px;
 }
+/* HOME BUTTONS */
+#g-btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px 0;
+  column-gap: 35px;
+}
+.g-home-btns {
+  text-align: center;
+  background-color: #ffffff;
+  width: 60px;
+  padding: 10px 0;
+  border-radius: 10px;
+  box-shadow: rgba(172, 172, 172, 0.25) 0px 13px 27px -5px,
+    rgba(82, 82, 82, 0.3) 0px 8px 16px -8px;
+    border: none;
+}
+.g-home-btns svg {
+  width: 18px;
+  height:  auto;
+}
+.g-home-btns p {
+  margin: 5px 0 0 0;
+  font-family: "Poppins Medium";
+  font-size: 13px;
+}
