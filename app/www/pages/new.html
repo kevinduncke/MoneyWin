@@ -32,6 +32,92 @@
       </div>
       <div id="home-bill-form">
         <h1 class="g-h1">Category</h1>
+        <div id="hn-filter-category">
+          <button class="hn-btn-filter hnf-active">Expenses</button>
+          <button class="hn-btn-filter">Services</button>
+          <button class="hn-btn-filter">Cards</button>
+          <button class="hn-btn-filter">Taxes</button>
+          <button class="hn-btn-filter">Others</button>
+        </div>
+        <div>
+          <div class="g-boxinput">
+            <p class="hn-input-text">Description</p>
+            <input
+              type="text"
+              class="hn-inputs"
+              id="hn-description"
+              name="hn-description"
+            />
+          </div>
+          <div class="hn-bs-main">
+            <div class="g-boxinput g-boxsliced">
+              <p class="hn-input-text">Date</p>
+              <input
+                type="date"
+                class="hn-inputs"
+                id="hn-date"
+                name="hn-date"
+              />
+            </div>
+            <div class="g-boxinput g-boxsliced">
+              <p class="hn-input-text">Quantity</p>
+              <div class="hn-q-box">
+                <span>
+                  <button class="hn-q-btns">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 512 512"
+                    >
+                      <path
+                        fill="#000000"
+                        d="M233.4 105.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 173.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z"
+                      />
+                    </svg>
+                  </button>
+                </span>
+                <span>10</span>
+                <span>
+                  <button class="hn-q-btns">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 512 512"
+                    >
+                      <path
+                        fill="#000000"
+                        d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"
+                      />
+                    </svg>
+                  </button>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="g-boxinput">
+            <div class="hn-type-value-box">
+              <div>
+                <p class="hn-input-text">Value</p>
+                <input
+                  type="number"
+                  class="hn-inputs"
+                  id="hn-value"
+                  name="hn-value"
+                  placeholder="$"
+                />
+              </div>
+              <div>
+                <a href="#" class="g-t-opt g-active">ARS</a>
+                <a href="#" class="g-t-opt">USD</a>
+              </div>
+            </div>
+          </div>
+          <div class="g-boxinput">
+            <div class="hn-type-box">
+              <a href="#" class="g-t-opt g-active">Cash</a>
+              <a href="#" class="g-t-opt">Debit</a>
+              <a href="#" class="g-t-opt">Credit</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="app-navbar">
