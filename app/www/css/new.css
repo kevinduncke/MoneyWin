@@ -1,5 +1,9 @@
+.app-newbill {
+  margin-bottom: 100px;
+}
 #home-bill-form {
   margin: 45px 15px;
+  margin-bottom: 30px;
   text-align: center;
 }
 #hn-filter-category {
@@ -41,7 +45,7 @@
   width: 100%;
   outline: none;
   font-family: 'Poppins Medium';
-  font-size: 15px;
+  font-size: 13px;
   background-color: transparent;
 }
 
@@ -56,6 +60,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.hn-q-box span {
+  font-family: 'Poppins Medium';
+  font-size: 13px;
 }
 .hn-q-btns {
   border: none;
@@ -73,24 +81,10 @@
 }
 .hn-type-box {
   justify-content: space-around;
-}
-.g-t-opt {
-  text-decoration: none;
-  color: #000000;
-  font-family: 'Poppins Medium';
-}
-.g-active {
-  color: #03A85F;
+  padding: 5px 0;
 }
 
-
-.g-boxinput {
-  background-color: #F9F9F9;
-  padding: 10px 15px;
-  box-shadow: rgba(172, 172, 172, 0.25) 0px 13px 27px -5px,
-    rgba(82, 82, 82, 0.3) 0px 8px 16px -8px;
-  margin: 15px 0;
-}
-.g-boxsliced {
-  width: 100%;
+#g-btns {
+  margin-top: 5px;
+  padding-bottom: 14px;
 }

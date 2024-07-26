@@ -1,0 +1,29 @@
+#home-account {
+  margin: 45px 15px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+.home-acc-boxes {
+  margin: 35px 0;
+}
+.acc-boxs-bts {
+  display: flex;
+  column-gap: 15px;
+  text-align: left;
+  align-items: center;
+}
+.acc-boxs-bts svg {
+  width: 25px;
+  height:  auto;
+}
+.acc-labels {
+  margin: 0;
+}
+.acc-inputs {
+  border: none;
+  width: 100%;
+  outline: none;
+  font-family: 'Poppins Medium';
+  font-size: 13px;
+  background-color: transparent;
+}
