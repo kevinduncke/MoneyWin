@@ -32,31 +32,31 @@
       <div id="home-status-bar">
         <div>
           <p>Hello</p>
-          <p id="home-username">Jack Sparrow</p>
+          <p id="home-username"></p>
         </div>
         <div>
-          <p id="home-date">13/05/2024</p>
-          <p id="home-time">10:12 PM</p>
+          <p id="home-date"></p>
+          <p id="home-time"></p>
         </div>
       </div>
       <div id="home-dateview">
         <button class="home-filter-btn">
-          <span id="home-month-filter">February</span>
+          <span id="home-month-filter"></span>
           <img src="../img/chevron-down-solid.svg" alt="chevron-down" />
         </button>
       </div>
       <div id="home-balanceview">
         <div class="home-bv-items bvi-brd">
           <span>Account Balance</span>
-          <span id="bvi-account">$82,000.00</span>
+          <span id="bvi-account"></span>
         </div>
         <div class="home-bv-items bvi-brd">
           <span>Bills | Total</span>
-          <span id="bvi-bills">$110,000.00</span>
+          <span id="bvi-bills"></span>
         </div>
         <div class="home-bv-items">
           <span>Bills | Credit Card</span>
-          <span id="bvi-credit">$56,000.00</span>
+          <span id="bvi-credit"></span>
         </div>
       </div>
       <div id="home-functions">
@@ -86,7 +86,9 @@
         </a>
       </div>
       <div id="home-movements">
-        <a href="./movements-view.html" class="g-anchor mv-t-link">Last Movements</a>
+        <a href="./movements-view.html" class="g-anchor mv-t-link"
+          >Last Movements</a
+        >
         <table class="table table-striped mv-table">
           <thead>
             <tr>
@@ -102,12 +104,6 @@
               <td>Supermarket BigBuy</td>
               <td>03/18/2024</td>
               <td>$100.00</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Night Bar | 2x Beer</td>
-              <td>03/02/2024</td>
-              <td>$20.00</td>
             </tr>
           </tbody>
         </table>
@@ -195,5 +191,7 @@
         </a>
       </div>
     </div>
+
+    <script type="module" src="../js/data.js"></script>
   </body>
 </html>

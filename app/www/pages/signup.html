@@ -12,7 +12,9 @@
   <body>
     <div class="app">
       <div class="app_logo">
-        <img id="logo" src="../img/MoneyWin.svg" alt="MoneyWin logo" />
+        <a href="../index.html">
+          <img id="logo" src="../img/MoneyWin.svg" alt="MoneyWin logo" />
+        </a>
       </div>
       <!-- SIGN UP -->
       <div id="app-signup">
@@ -75,6 +77,7 @@
                 name="password"
                 id="signup-password"
                 class="g-inputs"
+                placeholder="*****"
                 autocomplete="password"
                 required
               />
@@ -87,6 +90,30 @@
                 class="g-input-view inputview-close-icon"
                 src="../img/eye-slash-regular.svg"
                 alt="hide-password"
+              />
+            </div>
+          </div>
+          <div class="signup-box-input">
+            <label for="salary" class="g-labels">Salary</label>
+            <br />
+            <div class="g-input-boxs">
+              <input
+                type="number"
+                name="salary"
+                id="signup-salary"
+                class="g-inputs"
+                placeholder="$"
+                required
+              />
+              <img
+                class="g-input-view inputview-open-icon"
+                src="../img/eye-regular.svg"
+                alt="show-salary"
+              />
+              <img
+                class="g-input-view inputview-close-icon"
+                src="../img/eye-slash-regular.svg"
+                alt="hide-salary"
               />
             </div>
           </div>
@@ -109,6 +136,6 @@
       </div>
     </div>
 
-    <script src="../js/signup.js"></script>
+    <script type="module" src="../js/signup.js"></script>
   </body>
 </html>
