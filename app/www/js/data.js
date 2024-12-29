@@ -17,10 +17,12 @@ import { time } from "../js/utils.js";
     document.getElementById(
       "home-date"
     ).innerText = `${fullDate.day}/${fullDate.month}/${fullDate.year}`;
-    const fullTime = time();
-    document.getElementById(
-      "home-time"
-    ).innerText = `${fullTime.hour}:${fullTime.minutes} ${fullTime.id}`;
+    setInterval(() => {
+      const fullTime = time();
+      document.getElementById(
+        "home-time"
+      ).innerText = `${fullTime.hour}:${fullTime.minutes} ${fullTime.id}`;
+    }, 1000);
 
     // =========================
     // HOME | DATEVIEW
@@ -38,12 +40,16 @@ import { time } from "../js/utils.js";
     // BILLS TOTAL
     const accBills = document.getElementById("bvi-bills");
     if (accBills) {
-      accBills.innerText = currency().format(localStorage.getItem(`${userKey}-BILLS`));
+      accBills.innerText = currency().format(
+        localStorage.getItem(`${userKey}-BILLS`)
+      );
     }
     // CREDIT CARD
     const accCredit = document.getElementById("bvi-credit");
     if (accCredit) {
-      accCredit.innerText = currency().format(localStorage.getItem(`${userKey}-CARDS`));
+      accCredit.innerText = currency().format(
+        localStorage.getItem(`${userKey}-CARDS`)
+      );
     }
 
     // =========================

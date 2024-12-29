@@ -1,3 +1,9 @@
+/*-----------------------------------*/
+.app_logo {
+  margin: 25px 0;
+}
+/*-----------------------------------*/
+
 .app-home {
   display: block;
 }
@@ -5,7 +11,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #59bd85;
+  background-color: var(--main-moneywin-color);
   color: #ffffff;
   padding: 20px 15px;
 }
@@ -42,10 +48,10 @@
 }
 
 #home-balanceview {
-  margin: 0 15px;
+  margin: 0 25px;
 }
 .home-bv-items {
-  padding: 15px 0;
+  padding: 10px 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -69,7 +75,7 @@
 }
 
 #home-functions {
-  margin: 35px 15px;
+  margin: 40px 25px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -81,39 +87,41 @@
   width: 100%;
 }
 .fn-btns-div {
-  background-color: #82c392;
+  background-color: var(--main-moneywin-color);
   text-align: center;
-  padding: 15px 5px;
+  padding: 10px 0;
   border-radius: 10px;
 }
 .fn-btns-div img {
-  height: 20px;
+  height: 15px;
   width: auto;
 }
 .fn-btns-div p {
   color: #ffffff;
   font-family: "Poppins Light";
-  font-size: 12px;
+  font-size: 10px;
   text-transform: uppercase;
   margin: 5px 0 0 0;
 }
 
 #home-movements {
-  margin: 35px 15px 100px 15px;
+  margin: 35px 15px 100px 25px;
 }
 .mv-t-link {
-  font-size: 16px;
+  font-size: 14px;
   text-transform: uppercase;
   font-family: "Poppins Bold";
   letter-spacing: 1px;
   color: black;
 }
 .mv-table {
-  margin: 20px 0 0 0;
+  margin: 10px 0 0 0;
 }
-
-/*-----------------------------------*/
-.app_logo {
-  margin: 50px 0;
+.mv-table th,
+.mv-table td {
+  font-size: 13px;
 }
-/*-----------------------------------*/
+.mv-tbody th,
+.mv-tbody td {
+  font-size: 12px;
+}

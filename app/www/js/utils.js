@@ -4,7 +4,7 @@ export function calendar() {
     day: date.getDate(),
     month: date.getMonth(),
     year: date.getFullYear(),
-    stringMonth: ''
+    stringMonth: "",
   };
 
   switch (currentDate.month) {
@@ -82,7 +82,7 @@ export function time() {
   return clock;
 }
 
-export function balance(){
+export function balance() {
   const userKey = localStorage.getItem(`LOGGED_USER`);
   const salary = `${localStorage.getItem(`${userKey}-SALARY`)}`;
   const bills = `${localStorage.getItem(`${userKey}-BILLS`)}`;
@@ -90,17 +90,17 @@ export function balance(){
   return salary - bills;
 }
 
-export function bills(value){
+export function bills(value) {
   const userKey = localStorage.getItem(`LOGGED-USER`);
   let bills = localStorage.getItem(`${userKey}-BILLS`);
   bills = bills + value;
   localStorage.setItem(`${userKey}-BILLS`, bills);
 }
 
-export function currency(){
-  const formatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD'
+export function currency() {
+  const formatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
   });
 
   return formatter;

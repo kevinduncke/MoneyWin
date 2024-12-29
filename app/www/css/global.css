@@ -122,3 +122,8 @@
 .g-active {
   color: #03A85F;
 }
+
+/* COLORS */
+:root {
+  --main-moneywin-color: #448060;
+}

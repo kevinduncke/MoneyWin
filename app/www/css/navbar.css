@@ -22,7 +22,7 @@
 }
 
 .navbar-divbtn p {
-  font-family: 'Poppins Bold';
+  font-family: 'Poppins Medium';
   font-size: 14px;
   text-transform: uppercase;
   color: #777777;
@@ -30,6 +30,7 @@
 }
 
 .nb-active {
-  color: #22B573!important;
-  fill: #22B573;
-} 
+  color: var(--main-moneywin-color)!important;
+  fill: var(--main-moneywin-color);
+  font-family: 'Poppins Bold'!important;
+}
