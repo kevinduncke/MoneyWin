@@ -4,6 +4,9 @@
 }
 /*-----------------------------------*/
 
+/*=================*/
+/*==    NAVBAR   ==*/
+/*=================*/
 .app-home {
   display: block;
 }
@@ -13,17 +16,23 @@
   justify-content: space-between;
   background-color: var(--main-moneywin-color);
   color: #ffffff;
-  padding: 20px 15px;
+  padding: 20px 25px;
 }
 #home-status-bar p {
-  font-family: "Poppins Medium";
+  font-family: "Poppins Light";
   font-size: 13px;
   margin: 3px 0;
+}
+#home-username {
+  font-family: "Poppins Medium"!important;
 }
 #home-status-bar div:nth-last-child(1) {
   text-align: right;
 }
 
+/*=================*/
+/*==    DATES    ==*/
+/*=================*/
 #home-dateview {
   margin: 30px 0;
   display: flex;
@@ -47,6 +56,9 @@
   width: auto;
 }
 
+/*=================*/
+/*==  BALANCES   ==*/
+/*=================*/
 #home-balanceview {
   margin: 0 25px;
 }
@@ -74,6 +86,9 @@
   color: #0884ac;
 }
 
+/*=================*/
+/*==  FUNCTIONS  ==*/
+/*=================*/
 #home-functions {
   margin: 40px 25px;
   display: flex;
@@ -104,24 +119,27 @@
   margin: 5px 0 0 0;
 }
 
+/*=================*/
+/*==  MOVEMENTS  ==*/
+/*=================*/
 #home-movements {
   margin: 35px 15px 100px 25px;
 }
-.mv-t-link {
-  font-size: 14px;
-  text-transform: uppercase;
-  font-family: "Poppins Bold";
-  letter-spacing: 1px;
-  color: black;
+#home-all-mv, #home-lst-mv {
+  font-family: "Poppins Medium";
+  font-size: 16px;
+  text-decoration: none;
+  text-align: left;
+  color: #717171;
 }
-.mv-table {
-  margin: 10px 0 0 0;
+#home-lst-mv div {
+  display: flex;
+  align-items: center;
 }
-.mv-table th,
-.mv-table td {
-  font-size: 13px;
+#home-lst-mv span {
+  padding-left: 10px;
 }
-.mv-tbody th,
-.mv-tbody td {
-  font-size: 12px;
+#home-lst-mv svg {
+  width: 12px;
+  height: auto;
 }

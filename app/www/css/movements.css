@@ -1,4 +1,15 @@
-#home-tableview {
-  text-align: center;
-  margin: 40px 0 0 0;
+#home-mv-view {
+  margin: 35px 15px 100px 25px;
+  display: block;
+}
+#home-mv-view div {
+  display: flex;
+  align-items: center;
+}
+#home-all-mv span {
+  padding-left: 10px;
+}
+#home-all-mv svg {
+  width: 12px;
+  height: auto;
 }

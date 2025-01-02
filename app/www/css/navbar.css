@@ -1,6 +1,6 @@
 .app-navbar {
   background-color: white;
-  height: 85px;
+  height: 60px;
   width: 100%;
   position: fixed;
   bottom: 0;
@@ -21,16 +21,6 @@
   width: auto;
 }
 
-.navbar-divbtn p {
-  font-family: 'Poppins Medium';
-  font-size: 14px;
-  text-transform: uppercase;
-  color: #777777;
-  margin: 10px 0 0 0;
-}
-
 .nb-active {
-  color: var(--main-moneywin-color)!important;
   fill: var(--main-moneywin-color);
-  font-family: 'Poppins Bold'!important;
 }

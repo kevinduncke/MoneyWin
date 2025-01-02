@@ -1,13 +1,15 @@
 /* H1 */
 .g-h1 {
-  font-family: "Poppins Light";
+  font-family: "Poppins Medium";
   text-transform: uppercase;
-  font-size: 18px;
+  letter-spacing: 1px;
+  font-size: 20px;
 }
 /* LABELS */
 .g-labels {
-  font-family: "Poppins Light";
+  font-family: "Poppins Regular";
   font-size: 12px;
+  color: #515151;
 }
 /* INPUTS */
 .g-inputs {
@@ -18,7 +20,8 @@
   padding-left: 15px;
   box-sizing: border-box;
   background-color: #f0f0f0;
-  font-family: "Poppins Light";
+  letter-spacing: 1px;
+  font-family: "Poppins Medium";
   color: #000000;
   border: none;
   margin: 10px 0;
@@ -55,7 +58,7 @@
   text-decoration: none;
   font-family: "Poppins Light";
   font-size: 12px;
-  color: #0884ac;
+  color: #448060;
 }
 /* STATUSES */
 .g-status {
