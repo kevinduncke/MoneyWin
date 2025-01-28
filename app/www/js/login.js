@@ -3,26 +3,42 @@
 import { getUser } from "../js/account.js";
 import { newRoute } from "../js/routing.js";
 
-document.getElementById("login-btn").addEventListener("click", () => {
-  const loginUsername = document.getElementById("login-username").value;
-  const loginPassword = document.getElementById("login-password").value;
-  const loginCheckbox = document.getElementById("login-remember");
+const loginBtn = document.getElementById("login-btn");
+const loginUsername = document.getElementById("login-username");
+const loginPassword = document.getElementById("login-password");
+const loginCheckbox = document.getElementById("login-remember");
+const appLogin = document.getElementById("app-login");
+const appLoginStatus = document.getElementById("app-login-status");
 
-  const data = getUser({
-    loginUsername
-  });
+if (loginBtn) {
+  loginBtn.addEventListener("click", () => {
+    const username = loginUsername.value.trim();
+    const password = loginPassword.value.trim();
 
-  if (data.key_username) {
-    if (
-      loginUsername === data.key_username &&
-      loginPassword === data.key_password
-    ) {
-      localStorage.setItem('LOGGED_USER', data.key_username);
-
-      document.getElementById("app-login").style.display = "none";
-      document.getElementById("app-login-status").style.display = "block";
-
-      newRoute("./pages/home.html");
+    if (!username || !password) {
+      alert("Please enter your username and password.");
+      return;
     }
-  }
-});
+
+    const data = getUser({ loginUsername: username });
+
+    if (data && data.key_username === username) {
+      if (data.key_password === password) {
+        localStorage.setItem("LOGGED_USER", data.key_username);
+
+        if (loginCheckbox.checked) {
+          localStorage.setItem("REMB_USER", data.key_username);
+        }
+
+        appLogin.style.display = "none";
+        appLoginStatus.style.display = "block";
+
+        newRoute("./pages/home.html");
+      } else {
+        alert("Invalid credentials. Please try again.");
+      }
+    } else {
+      alert("Username not found.");
+    }
+  });
+}
