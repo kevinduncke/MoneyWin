@@ -16,4 +16,3 @@ export function getUser(data) {
   return { key_username, key_password };
 }
 
-

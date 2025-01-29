@@ -1,100 +1,49 @@
 export function calendar() {
   const date = new Date();
-  let currentDate = {
+  const months = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+
+  return {
     day: date.getDate(),
-    month: date.getMonth(),
+    month: date.getMonth() + 1,
     year: date.getFullYear(),
-    stringMonth: "",
+    stringMonth: months[date.getMonth()]
   };
-
-  switch (currentDate.month) {
-    case 0:
-      currentDate.month = 1;
-      currentDate.stringMonth = "January";
-      break;
-    case 1:
-      currentDate.month = 2;
-      currentDate.stringMonth = "February";
-      break;
-    case 2:
-      currentDate.month = 3;
-      currentDate.stringMonth = "March";
-      break;
-    case 3:
-      currentDate.stringMonth = "April";
-      currentDate.month = 4;
-      break;
-    case 4:
-      currentDate.stringMonth = "May";
-      currentDate.month = 5;
-      break;
-    case 5:
-      currentDate.stringMonth = "June";
-      currentDate.month = 6;
-      break;
-    case 6:
-      currentDate.stringMonth = "July";
-      currentDate.month = 7;
-      break;
-    case 7:
-      currentDate.stringMonth = "August";
-      currentDate.month = 8;
-      break;
-    case 8:
-      currentDate.stringMonth = "September";
-      currentDate.month = 9;
-      break;
-    case 9:
-      currentDate.stringMonth = "October";
-      currentDate.month = 10;
-      break;
-    case 10:
-      currentDate.stringMonth = "November";
-      currentDate.month = 11;
-      break;
-    case 11:
-      currentDate.stringMonth = "December";
-      currentDate.month = 12;
-      break;
-  }
-
-  return currentDate;
 }
 
 export function time() {
   const date = new Date();
-  let clock = {
-    hour: date.getHours(),
-    minutes: date.getMinutes(),
-    id: "AM",
+  let hour = date.getHours();
+  const minutes = date.getMinutes().toString().padStart(2, "0");
+  const id = hour >= 12 ? "PM" : "AM";
+  hour = hour % 12 || 12;
+
+  return {
+    hour: hour.toString().padStart(2, "0"),
+    minutes,
+    id
   };
-
-  if (clock.hour <= 9) {
-    clock.hour = "0" + clock.hour;
-  }
-  if (clock.minutes <= 9) {
-    clock.minutes = "0" + clock.minutes;
-  }
-  if (clock.hour >= 12) {
-    clock.id = "PM";
-  }
-
-  return clock;
 }
 
 export function balance() {
   const userKey = localStorage.getItem(`LOGGED_USER`);
-  const salary = `${localStorage.getItem(`${userKey}-SALARY`)}`;
-  const bills = `${localStorage.getItem(`${userKey}-BILLS`)}`;
+  const salary = Number(localStorage.getItem(`${userKey}-SALARY`) || 0);
+  const bills = Number(localStorage.getItem(`${userKey}-BILLS`) || 0);
 
   return salary - bills;
 }
 
+export function getLocalStorage(key) {
+  return localStorage.getItem(key);
+}
+
 export function bills(value) {
-  const userKey = localStorage.getItem(`LOGGED-USER`);
-  let bills = localStorage.getItem(`${userKey}-BILLS`);
-  bills = bills + value;
-  localStorage.setItem(`${userKey}-BILLS`, bills);
+  const userKey = getLocalStorage("LOGGED_USER");
+  let userBills = Number(getLocalStorage(`${userKey}-BILLS`) || 0);
+  userBills += Number(value);
+  localStorage.setItem(`${userKey}-BILLS`, userBills.toString());
 }
 
 export function currency() {

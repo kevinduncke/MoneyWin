@@ -11,11 +11,25 @@
   column-gap: 15px;
   text-align: left;
   align-items: center;
+  justify-content: space-between;
 }
 .acc-boxs-bts svg {
   width: 25px;
   height:  auto;
 }
+.acc-boxs-data {
+  display: flex;
+  column-gap: 15px;
+}
+
+.acc-boxs-data-btn {
+  background-color: transparent;
+  border: none;
+}
+#fllnm-save-btn, #username-save-btn, #password-save-btn, #salary-save-btn {
+  display: none;
+}
+
 .acc-labels {
   margin: 0;
 }
@@ -26,4 +40,12 @@
   font-family: 'Poppins Medium';
   font-size: 13px;
   background-color: transparent;
+}
+
+#home-acc-lgout button {
+  border: none;
+  background-color: transparent;
+  color: #a80303;
+  font-family: 'Poppins Medium';
+  font-size: 14px;
 }

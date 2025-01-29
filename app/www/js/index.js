@@ -1,6 +1,19 @@
-// Wait for the deviceready event before using any of Cordova's device APIs.
-// See https://cordova.apache.org/docs/en/latest/cordova/events/events.html#deviceready
-
+// Wait for `deviceready` before using Cordova's device APIs.
 document.addEventListener("deviceready", onDeviceReady, false);
 
-function onDeviceReady() {}
+function onDeviceReady() {
+  console.log("Device is ready.");
+}
+
+// Import routes module
+import { newRoute } from "./routing.js";
+
+// Check if user is remembered and redirect on window load
+window.onload = function () {
+  const loggedUserCheck = localStorage.getItem("REMB_USER");
+
+  // Redirect to home page if a remembered user is found
+  if (loggedUserCheck) {
+    newRoute("./pages/home.html");
+  }
+}

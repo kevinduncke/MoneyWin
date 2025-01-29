@@ -1,79 +1,59 @@
-import { balance, bills, calendar, currency } from "../js/utils.js";
-import { time } from "../js/utils.js";
+import { balance, bills, calendar, currency, time } from "../js/utils.js";
 
 (() => {
   const userKey = localStorage.getItem("LOGGED_USER");
 
   if (userKey) {
-    // =========================
+    const setElementText = (elementId, text) => {
+      const element = document.getElementById(elementId);
+      if (element) {
+        element.innerText = text;
+      }
+    };
+
+    const setElementValue = (elementId, value) => {
+      const element = document.getElementById(elementId);
+      if (element) {
+        element.value = value;
+      }
+    };
+
+    const getLocalStorageItem = (key) => {
+      return localStorage.getItem(`${userKey}-${key}`);
+    };
+
     // HOME | STATUS BAR
-    // =========================
     // USER FULLNAME
-    document.getElementById(
-      "home-username"
-    ).innerText = `${localStorage.getItem(`${userKey}-FULLNAME`)}`;
+    setElementText("home-username", getLocalStorageItem("FULLNAME"));
     // DATE & TIME SYSTEM
     const fullDate = calendar();
-    document.getElementById(
-      "home-date"
-    ).innerText = `${fullDate.day}/${fullDate.month}/${fullDate.year}`;
+    setElementText(
+      "home-date",
+      `${fullDate.day}/${fullDate.month}/${fullDate.year}`
+    );
     setInterval(() => {
       const fullTime = time();
-      document.getElementById(
-        "home-time"
-      ).innerText = `${fullTime.hour}:${fullTime.minutes} ${fullTime.id}`;
+      setElementText("home-time", `${fullTime.hour}:${fullTime.minutes} ${fullTime.id}`);
     }, 1000);
 
-    // =========================
     // HOME | DATEVIEW
-    // =========================
     // MONTH VIEW
-    const mthView = document.getElementById("home-month-filter");
-    if (mthView) {
-      mthView.innerText = `${fullDate.stringMonth}`;
-    }
+    setElementText("home-month-filter", fullDate.stringMonth);
     // ACCOUNT BALANCE
-    const accBalance = document.getElementById("bvi-account");
-    if (accBalance) {
-      accBalance.innerText = currency().format(balance());
-    }
+    setElementText("bvi-account", currency().format(balance()));
     // BILLS TOTAL
-    const accBills = document.getElementById("bvi-bills");
-    if (accBills) {
-      accBills.innerText = currency().format(
-        localStorage.getItem(`${userKey}-BILLS`)
-      );
-    }
+    setElementText("bvi-bills", currency().format(getLocalStorageItem("BILLS")));
     // CREDIT CARD
-    const accCredit = document.getElementById("bvi-credit");
-    if (accCredit) {
-      accCredit.innerText = currency().format(
-        localStorage.getItem(`${userKey}-CARDS`)
-      );
-    }
+    setElementText("bvi-credit", currency().format(getLocalStorageItem("CARDS")));
 
-    // =========================
     // ACCOUNT | INFORMATION
-    // =========================
     // FULLNAME
-    const accName = document.getElementById("account-name");
-    if (accName) {
-      accName.value = `${localStorage.getItem(`${userKey}-FULLNAME`)}`;
-    }
+    setElementValue("account-name", getLocalStorageItem("FULLNAME"));
     // USERNAME
-    const accUsername = document.getElementById("account-username");
-    if (accUsername) {
-      accUsername.value = userKey;
-    }
+    setElementValue("account-username", userKey);
     // PASSWORD
-    const accPassword = document.getElementById("account-password");
-    if (accPassword) {
-      accPassword.value = `${localStorage.getItem(`${userKey}-PASSWORD`)}`;
-    }
+    setElementValue("account-password", getLocalStorageItem("PASSWORD"));
     // SALARY
-    const accSalary = document.getElementById("account-salary");
-    if (accSalary) {
-      accSalary.value = `${localStorage.getItem(`${userKey}-SALARY`)}`;
-    }
+    setElementValue("account-salary", getLocalStorageItem("SALARY"));
   }
 })();
