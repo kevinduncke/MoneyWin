@@ -1,54 +1,92 @@
 "use strict";
 
-import { getUser } from "../js/account.js";
 import { newRoute } from "../js/routing.js";
 
-const loginBtn = document.getElementById("login-btn");
-const loginUsername = document.getElementById("login-username");
-const loginPassword = document.getElementById("login-password");
-const loginCheckbox = document.getElementById("login-remember");
-const appLogin = document.getElementById("app-login");
-const appLoginStatus = document.getElementById("app-login-status");
+document.addEventListener("deviceReady", function () {
+  const loginBtn = document.getElementById("login-btn");
 
-if (loginBtn) {
-  loginBtn.addEventListener("click", () => {
-    const username = loginUsername.value.trim();
-    const password = loginPassword.value.trim();
+  if (loginBtn) {
+    loginBtn.addEventListener("click", login);
+  }
+  autoLogin();
+});
 
-    if (!username || !password) {
-      alert("Please enter your username and password.");
-      return;
-    }
+function login() {
+  const loginUsername = document.getElementById("login-username");
+  const loginPassword = document.getElementById("login-password");
+  const loginCheckbox = document.getElementById("login-remember");
 
-    const data = getUser({ loginUsername: username });
+  const username = loginUsername.value.trim();
+  const password = loginPassword.value.trim();
 
-    if (data && data.key_username === username) {
-      if (data.key_password === password) {
-        localStorage.setItem("LOGGED_USER", data.key_username);
+  if (!username || !password) {
+    alert("Please enter your username and password.");
+    return;
+  }
 
-        if (loginCheckbox.checked) {
-          localStorage.setItem("REMB_USER", data.key_username);
+  db.transaction(function (tx) {
+    tx.executeSql(
+      "SELECT * FROM users WHERE username = ? AND password = ?",
+      [username, password],
+      function (tx, resultSet) {
+        if (resultSet.rows.length > 0) {
+          const user = resultSet.rows.item(0);
+          const dbUsername = user.username;
+          const dbPassword = user.password;
+
+          if (username === dbUsername && password === dbPassword) {
+            console.log("User signed in successfully.");
+            if (loginCheckbox.checked) {
+              db.transaction(function (tx) {
+                tx.executeSql(
+                  "UPDATE users SET logged_user = 1 WHERE id = ?",
+                  [user.id],
+                  function (tx, res) {
+                    console.log("User session remembered successfully.");
+                  }
+                );
+              });
+            }
+            loginSuccess();
+          } else {
+            console.log("Invalid credentials. Please try again.");
+          }
+        } else {
+          console.log("Username not found.");
         }
-
-        appLogin.style.display = "none";
-        appLoginStatus.style.display = "block";
-
-        newRoute("./pages/home.html");
-      } else {
-        alert("Invalid credentials. Please try again.");
+      },
+      function (error) {
+        console.log("SELECT ERROR: " + error.message);
       }
-    } else {
-      alert("Username not found.");
-    }
+    );
   });
 }
 
-const logoutBtn = document.getElementById("logout-btn");
+function loginSuccess() {
+  const appLogin = document.getElementById("app-login");
+  const appLoginStatus = document.getElementById("app-login-status");
 
-if(logoutBtn){
-  logoutBtn.addEventListener("click", () => {
-    localStorage.removeItem("LOGGED_USER");
-    localStorage.removeItem("REMB_USER");
-    newRoute("../index.html");
+  appLogin.style.display = "none";
+  appLoginStatus.style.display = "block";
+
+  newRoute("./pages/home.html");
+}
+
+function autoLogin() {
+  db.transaction(function (tx) {
+    tx.executeSql(
+      "SELECT * FROM users WHERE logged_user = 1",
+      [],
+      function (tx, resultSet) {
+        const lg_value = resultSet.rows.item(0);
+        if(lg_value){
+          console.log("User logged in automatically");
+          loginSuccess();
+        }
+      },
+      function (error) {
+        console.log(error.message);
+      }
+    );
   });
 }

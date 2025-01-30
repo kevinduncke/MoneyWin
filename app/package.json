@@ -18,7 +18,10 @@
   "cordova": {
     "platforms": [
       "android"
-    ]
+    ],
+    "plugins": {
+      "cordova-sqlite-storage": {}
+    }
   },
   "dependencies": {
     "bootstrap": "^5.3.3",
