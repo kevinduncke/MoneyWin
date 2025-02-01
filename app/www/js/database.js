@@ -1,33 +1,74 @@
-let db;
+const DatabaseModule = (function () {
+  let db;
 
-document.addEventListener("deviceready", function () {
-  db = window.sqlitePlugin.openDatabase({
-    name: "moneywin.db",
-    location: "default",
-  });
+  // INIT THE DATABASE
+  function init() {
+    return new Promise((resolve, reject) => {
+      document.addEventListener(
+        "deviceready",
+        () => {
+          db = window.sqlitePlugin.openDatabase({
+            name: "moneywin.db",
+            location: "default",
+          });
 
-  db.transaction(
-    function (tx) {
-      tx.executeSql(
-        "CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, fullname TEXT, username TEXT, password TEXT, salary REAL, registration_date TEXT, logged_user INTEGER DEFAULT 0)",
-        [],
-        function (tx, res) {
-          console.log("Table created successfully");
-          // alert("Table created successfully");
+          // CREATE USERS TABLE
+          db.transaction(
+            (tx) => {
+              tx.executeSql(
+                `CREATE TABLE IF NOT EXISTS users (
+                  id INTEGER PRIMARY KEY AUTOINCREMENT, 
+                  fullname TEXT, 
+                  username TEXT, 
+                  password TEXT, 
+                  salary REAL, 
+                  registration_date TEXT, 
+                  logged_user INTEGER DEFAULT 0
+                )`,
+                [],
+                (tx, res) => {
+                  console.log("Table created successfully");
+                  resolve();
+                },
+                (tx, err) => {
+                  console.log("CREATE TABLE ERROR: " + err.message);
+                  reject();
+                }
+              );
+            },
+            (error) => {
+              console.log("Transaction error: " + error.message);
+              reject(error);
+            },
+            () => {
+              console.log("Transaction success");
+            }
+          );
         },
-        function (tx, err) {
-          console.log("CREATE TABLE ERROR: " + err.message);
-          // alert("CREATE TABLE ERROR: " + err.message);
-        }
+        false
       );
-    },
-    function (error) {
-      console.log("Transaction error: " + error.message);
-      // alert("Transaction error: " + error.message);
-    },
-    function () {
-      console.log("Transaction success");
-      // alert("Transaction success");
-    }
-  );
-});
+    });
+  }
+
+  function executeQuery(sql, params = []) {
+    return new Promise((resolve, reject) => {
+      db.transaction((tx) => {
+        tx.executeSql(
+          sql,
+          params,
+          (tx, resultSet) => resolve(resultSet),
+          (error) => reject(error)
+        );
+      });
+    });
+  }
+
+  // PUBLIC API
+  return {
+    init,
+    executeQuery,
+  };
+})();
+
+// EXPOSE THE MODULE GLOBALLY
+window.DatabaseModule = DatabaseModule;

@@ -6,12 +6,14 @@ document.addEventListener("deviceReady", function () {
   const loginBtn = document.getElementById("login-btn");
 
   if (loginBtn) {
-    loginBtn.addEventListener("click", login);
+    loginBtn.addEventListener("click", handleLogin);
   }
+
   autoLogin();
 });
 
-function login() {
+// FUNCTION TO HANDLE LOGIN FORM
+async function handleLogin() {
   const loginUsername = document.getElementById("login-username");
   const loginPassword = document.getElementById("login-password");
   const loginCheckbox = document.getElementById("login-remember");
@@ -24,44 +26,67 @@ function login() {
     return;
   }
 
-  db.transaction(function (tx) {
-    tx.executeSql(
-      "SELECT * FROM users WHERE username = ? AND password = ?",
-      [username, password],
-      function (tx, resultSet) {
-        if (resultSet.rows.length > 0) {
-          const user = resultSet.rows.item(0);
-          const dbUsername = user.username;
-          const dbPassword = user.password;
+  try {
+    const user = await authenticateUser(username, password);
 
-          if (username === dbUsername && password === dbPassword) {
-            console.log("User signed in successfully.");
-            if (loginCheckbox.checked) {
-              db.transaction(function (tx) {
-                tx.executeSql(
-                  "UPDATE users SET logged_user = 1 WHERE id = ?",
-                  [user.id],
-                  function (tx, res) {
-                    console.log("User session remembered successfully.");
-                  }
-                );
-              });
-            }
-            loginSuccess();
-          } else {
-            console.log("Invalid credentials. Please try again.");
-          }
-        } else {
-          console.log("Username not found.");
-        }
-      },
-      function (error) {
-        console.log("SELECT ERROR: " + error.message);
-      }
-    );
-  });
+    // IF AUTH IS SUCCESS
+    if (loginCheckbox.checked) {
+      await rememberUserSession(user.id);
+    }
+
+    loginSuccess();
+  } catch (error) {
+    console.error("Login error: ", error);
+    alert(`Login error: ${error.message}`);
+  }
 }
 
+// FUNCTION TO AUTH USER
+async function authenticateUser(username, password) {
+  const sql = "SELECT * FROM users WHERE username = ? AND password = ?";
+  const params = [username, password];
+
+  try {
+    // Ensure DatabaseModule is initialized
+    if (!DatabaseModule) {
+      throw new Error("Database module is not initialized.");
+    }    
+    const resultSet = await DatabaseModule.executeQuery(sql, params);
+    if (resultSet.rows.length > 0) {
+      const user = resultSet.rows.item(0);
+
+      if (username === user.username && password === user.password) {
+        console.log("User signed in successfully.");
+        return user;
+      } else {
+        throw new Error("Invalid credentials. Please try again.");
+      }
+    } else {
+      throw new Error("Username not found.");
+    }
+  } catch (error) {
+    throw new Error("Select Error: " + error.message);
+  }
+}
+
+// FUNCTION CACHE USER SESSION
+async function rememberUserSession(userId) {
+  const sql = "UPDATE users SET logged_user = 1 WHERE id = ?";
+  const params = [user.id];
+
+  try {
+    // Ensure DatabaseModule is initialized
+    if (!DatabaseModule) {
+      throw new Error("Database module is not initialized.");
+    }
+    await DatabaseModule.executeQuery(sql, params);
+    console.log("User session remembered successfully.");
+  } catch (error) {
+    throw new Error("Update Error: " + error.message);
+  }
+}
+
+// FUNCTION TO HANDLE SUCCESSFULLY LOGIN
 function loginSuccess() {
   const appLogin = document.getElementById("app-login");
   const appLoginStatus = document.getElementById("app-login-status");
@@ -72,21 +97,35 @@ function loginSuccess() {
   newRoute("./pages/home.html");
 }
 
-function autoLogin() {
-  db.transaction(function (tx) {
-    tx.executeSql(
-      "SELECT * FROM users WHERE logged_user = 1",
-      [],
-      function (tx, resultSet) {
-        const lg_value = resultSet.rows.item(0);
-        if(lg_value){
-          console.log("User logged in automatically");
-          loginSuccess();
-        }
-      },
-      function (error) {
-        console.log(error.message);
-      }
-    );
-  });
+// FUNCTION TO AUTOLOG USER SESSION
+async function autoLogin() {
+  try {
+    const user = await getLoggedInUser();
+    if (user) {
+      console.log("User logged in automatically");
+      loginSuccess();
+    }
+  } catch (error) {
+    console.error("Auto-login error: ", error);
+  }
+}
+
+// FUNCTION TO GET LOGGED IN
+async function getLoggedInUser() {
+  const sql = "SELECT * FROM users WHERE logged_user = 1";
+
+  try {
+    // Ensure DatabaseModule is initialized
+    if (!DatabaseModule) {
+      throw new Error("Database module is not initialized.");
+    }    
+    const resultSet = await DatabaseModule.executeQuery(sql);
+    if (resultSet.rows.length > 0) {
+      return resultSet.rows.item(0);
+    } else {
+      return null;
+    }
+  } catch (error) {
+    throw new Error("Select Error: " + error.message);
+  }
 }

@@ -1,18 +1,53 @@
 "use strict";
 
-export function newUser(data) {
-  localStorage.setItem(`${data.username}-FULLNAME`, data.fullname);
-  localStorage.setItem(`${data.username}-USERNAME`, data.username);
-  localStorage.setItem(`${data.username}-PASSWORD`, data.password);
-  localStorage.setItem(`${data.username}-SALARY`, data.salary);
-  localStorage.setItem(`${data.username}-BILLS`, 0);
-  localStorage.setItem(`${data.username}-CARDS`, 0);
+document.addEventListener(
+  "deviceready",
+  async () => {
+    try {
+      // SET ACCOUNT DATA
+      await accountData();
+    } catch (error) {
+      console.error("Error in account.js: ", error);
+      alert("An error occurred. Please check the console for details.");
+    }
+  },
+  false
+);
+
+// CONSTRUCTOR FUNCTION SET ELEMENT TEXT
+function setElementText(elementId, text) {
+  const element = document.getElementById(elementId);
+  if (element) {
+    element.value = text;
+  } else {
+    console.log("Element with ID '" + elementId + "' not found.");
+  }
 }
 
-export function getUser(data) {
-  let key_username = localStorage.getItem(`${data.loginUsername}-USERNAME`);
-  let key_password = localStorage.getItem(`${data.loginUsername}-PASSWORD`);
+// FUNCTION SET ACCOUNT USER DATA
+async function accountData() {
+  const sql =
+    "SELECT fullname, username, password, salary FROM users WHERE logged_user = 1";
+  const params = [];
 
-  return { key_username, key_password };
+  try {
+    // Ensure DatabaseModule is initialized
+    if (!DatabaseModule) {
+      throw new Error("Database module is not initialized.");
+    }    
+    const resultSet = await DatabaseModule.executeQuery(sql, params);
+    if (resultSet.rows.length > 0) {
+      const user = resultSet.rows.item(0);
+      setElementText("account-name", user.fullname);
+      setElementText("account-username", user.username);
+      setElementText("account-password", user.password);
+      setElementText("account-salary", user.salary);
+    } else {
+      console.log("No user is currently logged in.");
+    }
+  } catch (error) {
+    alert(error);
+    console.error("Error executing query: ", error);
+    throw error;
+  }
 }
-
