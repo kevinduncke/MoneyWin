@@ -1,9 +1,9 @@
 import { calendar, time } from "./utils.js";
 
-document.addEventListener("deviceReady", async () => {
+document.addEventListener("deviceReady", () => {
   try {
     // HOME | STATUS BAR
-    await setFullname();
+    setFullname();
 
     // DATE & TIME SYSTEM
     const fullDate = calendar();
@@ -43,14 +43,15 @@ function setElementText(elementId, text) {
 
 // FUNCTION SET FULLNAME TO HOME BAR STATUS
 async function setFullname() {
-  const sql = "SELECT fullname FROM users WHERE logged_user = 1";
-  const params = [];
+  const loggedInUserId = sessionStorage.getItem("actualSession");
+  const sql = "SELECT fullname FROM users WHERE id = ?";
+  const params = [loggedInUserId];
 
   try {
     // Ensure DatabaseModule is initialized
     if (!DatabaseModule) {
       throw new Error("Database module is not initialized.");
-    }    
+    }
     const resultSet = await DatabaseModule.executeQuery(sql, params);
     if (resultSet.rows.length > 0) {
       const user = resultSet.rows.item(0);

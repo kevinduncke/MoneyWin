@@ -2,7 +2,7 @@
 
 import { newRoute } from "../js/routing.js";
 
-document.addEventListener("deviceReady", function () {
+document.addEventListener("deviceready", function () {
   const loginBtn = document.getElementById("login-btn");
 
   if (loginBtn) {
@@ -31,9 +31,11 @@ async function handleLogin() {
 
     // IF AUTH IS SUCCESS
     if (loginCheckbox.checked) {
-      await rememberUserSession(user.id);
+      localStorage.setItem("rememberUserId", user.id);
+    } else {
+      localStorage.removeItem("rememberUserId");
     }
-
+    sessionStorage.setItem("actualSession", user.id);
     loginSuccess();
   } catch (error) {
     console.error("Login error: ", error);
@@ -69,23 +71,6 @@ async function authenticateUser(username, password) {
   }
 }
 
-// FUNCTION CACHE USER SESSION
-async function rememberUserSession(userId) {
-  const sql = "UPDATE users SET logged_user = 1 WHERE id = ?";
-  const params = [user.id];
-
-  try {
-    // Ensure DatabaseModule is initialized
-    if (!DatabaseModule) {
-      throw new Error("Database module is not initialized.");
-    }
-    await DatabaseModule.executeQuery(sql, params);
-    console.log("User session remembered successfully.");
-  } catch (error) {
-    throw new Error("Update Error: " + error.message);
-  }
-}
-
 // FUNCTION TO HANDLE SUCCESSFULLY LOGIN
 function loginSuccess() {
   const appLogin = document.getElementById("app-login");
@@ -100,9 +85,11 @@ function loginSuccess() {
 // FUNCTION TO AUTOLOG USER SESSION
 async function autoLogin() {
   try {
-    const user = await getLoggedInUser();
+    const rememberUserId = localStorage.getItem("rememberUserId");
+    const user = await getUserById(rememberUserId);
     if (user) {
       console.log("User logged in automatically");
+      sessionStorage.setItem("actualSession", user.id);
       loginSuccess();
     }
   } catch (error) {
@@ -111,15 +98,15 @@ async function autoLogin() {
 }
 
 // FUNCTION TO GET LOGGED IN
-async function getLoggedInUser() {
-  const sql = "SELECT * FROM users WHERE logged_user = 1";
-
+async function getUserById(userId) {
+  const sql = "SELECT * FROM users WHERE id = ?";
+  const params = [userId];
   try {
     // Ensure DatabaseModule is initialized
     if (!DatabaseModule) {
       throw new Error("Database module is not initialized.");
     }    
-    const resultSet = await DatabaseModule.executeQuery(sql);
+    const resultSet = await DatabaseModule.executeQuery(sql, params);
     if (resultSet.rows.length > 0) {
       return resultSet.rows.item(0);
     } else {

@@ -2,7 +2,7 @@
 
 import { newRoute } from "./routing.js";
 
-document.addEventListener("deviceReady", function () {
+document.addEventListener("deviceready", function () {
   const signupBtn = document.getElementById("signup-btn");
   signupBtn.addEventListener("click", () => {
     newUser();

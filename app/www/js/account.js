@@ -4,11 +4,25 @@ document.addEventListener(
   "deviceready",
   async () => {
     try {
-      // SET ACCOUNT DATA
-      await accountData();
+      // Ensure DatabaseModule is initialized
+      if (!DatabaseModule) {
+        throw new Error(
+          "Database module is not initialized. Please check your setup."
+        );
+      }
+
+      // RETRIVE USER'S ID
+      const userId = sessionStorage.getItem("actualSession");
+      if (userId) {
+        // SET ACCOUNT DATA
+        await accountData(userId);
+      } else {
+        throw new Error("No logged-in user found.");
+      }
     } catch (error) {
-      console.error("Error in account.js: ", error);
-      alert("An error occurred. Please check the console for details.");
+      throw new Error(
+        "An error occurred. Please check the console for details."
+      );
     }
   },
   false
@@ -25,16 +39,18 @@ function setElementText(elementId, text) {
 }
 
 // FUNCTION SET ACCOUNT USER DATA
-async function accountData() {
+async function accountData(userId) {
   const sql =
-    "SELECT fullname, username, password, salary FROM users WHERE logged_user = 1";
-  const params = [];
+    "SELECT fullname, username, password, salary FROM users WHERE id = ?";
+  const params = [userId];
 
   try {
     // Ensure DatabaseModule is initialized
     if (!DatabaseModule) {
-      throw new Error("Database module is not initialized.");
-    }    
+      throw new Error(
+        "Database module is not initialized. Please check your setup."
+      );
+    }
     const resultSet = await DatabaseModule.executeQuery(sql, params);
     if (resultSet.rows.length > 0) {
       const user = resultSet.rows.item(0);
@@ -43,7 +59,7 @@ async function accountData() {
       setElementText("account-password", user.password);
       setElementText("account-salary", user.salary);
     } else {
-      console.log("No user is currently logged in.");
+      throw new Error("No user found with the provided ID.");
     }
   } catch (error) {
     alert(error);

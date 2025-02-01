@@ -48,6 +48,7 @@ function editData(id) {
 
 // FUNCTION TO SAVE EDITED USER DATA
 async function saveData(id) {
+  alert(`Saving data...`);
   const elements = getElements(id);
 
   if (elements) {
@@ -57,7 +58,7 @@ async function saveData(id) {
 
     const newValue = elements.input.value.trim();
 
-    if (!newValue || newValue.trim() === "") {
+    if (!newValue) {
       alert("Please enter a valid value.");
       return;
     }
@@ -96,32 +97,25 @@ function getElements(id) {
 
 // FUNCTION TO GET THE ID OF THE LOGGED-IN USER
 async function getLoggedInUserId() {
-  const sql = "SELECT id FROM users WHERE logged_user = 1";
-  const params = [];
-
   try {
-    // Ensure DatabaseModule is initialized
-    if (!DatabaseModule) {
-      throw new Error("Database module is not initialized.");
-    }    
-    const resultSet = await DatabaseModule.executeQuery(sql, params);
-    if (resultSet.rows.length > 0) {
-      // RETURN WITH THE USER ID
-      return resultSet.rows.item(0).id;
+    // RETRIVE USER'S ID
+    const userId = sessionStorage.getItem("actualSession");
+    alert(userId);
+    if(userId){
+      return userId;
     } else {
-      // REJECT IF NO USER IS FOUND
-      console.error("Error user ID not found.");
-      return new Error("User ID not found.");
+      throw new Error("User ID not found in local storage.");
     }
   } catch (error) {
-    console.error("Error in editData.js: ", error);
-    alert("An error occurred. Please check the console for details.");
+    alert("Error in editData.js: " + error);
+    throw new Error("An error occurred. Please check the console for details.");
   }
 }
 
 // FUNCTION TO UPDATE THE DATABASE
 async function updateDatabase(field, newValue) {
   try {
+    alert("Updating the database..");
     // GET THE LOGGED-IN USER'S ID
     const loggedInUserId = await getLoggedInUserId();
 
@@ -138,15 +132,14 @@ async function updateDatabase(field, newValue) {
         sql = "UPDATE users SET salary = ? WHERE id = ?";
         break;
       default:
-        console.error("INVALID FIELD");
-        return;
+        throw new Error("Invalid field specified.");
     }
 
     // EXECUTE THE SQL Query
     // Ensure DatabaseModule is initialized
     if (!DatabaseModule) {
       throw new Error("Database module is not initialized.");
-    }    
+    }
     const resultSet = await DatabaseModule.executeQuery(sql, [
       newValue,
       loggedInUserId,
@@ -157,8 +150,8 @@ async function updateDatabase(field, newValue) {
       console.log("Database updated successfully.");
       alert("Data saved successfully.");
     } else {
-      console.log("No rows were updated");
-      alert("No changes were made. Please check your input");
+      console.error("No rows were updated. Check the user ID and field values.");
+      alert("No changes were made. Please check your input.");
     }
   } catch (error) {
     console.error(error);

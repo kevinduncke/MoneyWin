@@ -7,28 +7,6 @@
   text-align: center;
 }
 
-#hn-filter-category {
-  box-sizing: border-box;
-  display: flex;
-  justify-content: space-between;
-  column-gap: 10px;
-  margin: 30px 0;
-}
-.hn-btns-filters {
-  border: none;
-  padding: 10px 0;
-  width: 25%;
-  border-radius: 10px;
-  font-family: 'Poppins Medium';
-  font-size: 12px;
-  background-color: white;
-}
-.hn-bf-active {
-  background-color: #448060;
-  color: white;
-}
-
-
 .hn-input-text {
   margin: 0;
   text-align: left;
@@ -41,7 +19,7 @@
   border: none;
   width: 100%;
   outline: none;
-  font-family: 'Poppins Medium';
+  font-family: "Poppins Medium";
   font-size: 13px;
   background-color: transparent;
 }
@@ -61,16 +39,29 @@
   align-items: center;
 }
 .hn-q-box span {
-  font-family: 'Poppins Medium';
+  font-family: "Poppins Medium";
   font-size: 13px;
 }
-.hn-q-btns {
+
+.hn-slctbill {
+  width: 100%;
+  padding: 5px 0;
   border: none;
+  border-radius: 5px;
   background-color: transparent;
+  color: #000000;
+  font-size: 13px;
+  font-family: 'Poppins Medium';
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
-.hn-q-btns svg {
-  width: 15px;
-  height: auto;
+.hn-slctbill:hover {
+  border-color: #000000;
+}
+.hn-slctbill:focus {
+  box-shadow: 0 0 5px transparent;
+  border-color: #000000;
 }
 
 /* SAVE & CANCEL BUTTONS*/
@@ -80,20 +71,15 @@
 }
 
 #g-hnb-cmd-c {
-  background-color: #8C3434;
+  background-color: #8c3434;
 }
 
-.hn-type-value-box, .hn-type-box {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  column-gap: 10px;
-}
-.hn-type-box {
-  padding: 5px 0px;
-}
+.hn-type-value-box,
+
 
 #g-btns {
   margin-top: 5px;
   padding-bottom: 14px;
 }
+
+

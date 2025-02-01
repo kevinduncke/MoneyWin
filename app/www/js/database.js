@@ -12,9 +12,10 @@ const DatabaseModule = (function () {
             location: "default",
           });
 
-          // CREATE USERS TABLE
+          // CREATE TABLES
           db.transaction(
             (tx) => {
+              // CREATE USERS TABLE
               tx.executeSql(
                 `CREATE TABLE IF NOT EXISTS users (
                   id INTEGER PRIMARY KEY AUTOINCREMENT, 
@@ -22,12 +23,37 @@ const DatabaseModule = (function () {
                   username TEXT, 
                   password TEXT, 
                   salary REAL, 
-                  registration_date TEXT, 
-                  logged_user INTEGER DEFAULT 0
+                  registration_date TEXT
                 )`,
                 [],
                 (tx, res) => {
-                  console.log("Table created successfully");
+                  console.log("Users table created successfully");
+                  resolve();
+                },
+                (tx, err) => {
+                  console.log("CREATE TABLE ERROR: " + err.message);
+                  reject();
+                }
+              );
+
+              // CREATE BILLS TABLE
+              tx.executeSql(
+                `CREATE TABLE IF NOT EXISTS bills (
+                  id INTEGER PRIMARY KEY AUTOINCREMENT,
+                  description TEXT NOT NULL,
+                  value REAL NOT NULL,
+                  payment TEXT NOT NULL,
+                  type TEXT NOT NULL,
+                  date TEXT NOT NULL,
+                  quantity INTEGER DEFAULT 1,
+                  total REAL NOT NULL,
+                  currency TEXT NOT NULL,
+                  user_id INTEGER NOT NULL,
+                  FOREIGN KEY (user_id) REFERENCES users(id)
+                )`,
+                [],
+                (tx, res) => {
+                  console.log("Bills table created successfully");
                   resolve();
                 },
                 (tx, err) => {
