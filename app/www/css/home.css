@@ -24,7 +24,7 @@
   margin: 3px 0;
 }
 #home-username {
-  font-family: "Poppins Medium"!important;
+  font-family: "Poppins Medium" !important;
 }
 #home-status-bar div:nth-last-child(1) {
   text-align: right;
@@ -125,7 +125,8 @@
 #home-movements {
   margin: 35px 15px 100px 25px;
 }
-#home-all-mv, #home-lst-mv {
+#home-all-mv,
+#home-lst-mv {
   font-family: "Poppins Medium";
   font-size: 16px;
   text-decoration: none;
@@ -142,4 +143,53 @@
 #home-lst-mv svg {
   width: 12px;
   height: auto;
+}
+
+#home-mv-list {
+  margin: 25px 0;
+}
+
+/* LAST MOVEMENTS | ITEMs LIST */
+.home-mv-item {
+  display: flex;
+  align-items: center;
+  padding: 7px 10px;
+  box-shadow: 1px -1px 35px 5px rgb(248, 248, 248);
+  column-gap: 20px;
+}
+.home-mvi-icon {
+  padding: 13px 22px;
+  background-color: #f9f9f9;
+  border-radius: 100px;
+  font-family: "Poppins Medium";
+  font-size: 16px;
+}
+.home-mvi-info {
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.home-mvi-dcpt {
+  text-align: left;
+}
+.home-mvi-balance {
+  text-align: right;
+}
+.home-mvi-red {
+  color: #a80303;
+}
+.home-mvi-green {
+  color: #448060;
+}
+.home-mvi-h2 {
+  font-family: "Poppins Medium";
+  font-size: 14px;
+  margin: 0;
+}
+.home-mvi-span {
+  font-family: "Poppins Light";
+  font-size: 12px;
 }

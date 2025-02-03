@@ -59,7 +59,6 @@ async function newUser() {
     const resultSet = await DatabaseModule.executeQuery(sql, params);
     if (resultSet.rowsAffected > 0) {
       console.log("User signed up successfully with ID: " + resultSet.insertId);
-      alert("User signed up successfully with ID: " + resultSet.insertId);
       accountReload();
     } else {
       console.error("NEW USER ERROR: " + error.message);

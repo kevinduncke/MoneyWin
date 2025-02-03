@@ -4,13 +4,6 @@ document.addEventListener(
   "deviceready",
   async () => {
     try {
-      // Ensure DatabaseModule is initialized
-      if (!DatabaseModule) {
-        throw new Error(
-          "Database module is not initialized. Please check your setup."
-        );
-      }
-
       // RETRIVE USER'S ID
       const userId = sessionStorage.getItem("actualSession");
       if (userId) {
@@ -29,7 +22,7 @@ document.addEventListener(
 );
 
 // CONSTRUCTOR FUNCTION SET ELEMENT TEXT
-function setElementText(elementId, text) {
+export function setElementText(elementId, text) {
   const element = document.getElementById(elementId);
   if (element) {
     element.value = text;
