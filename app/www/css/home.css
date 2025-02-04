@@ -171,6 +171,17 @@
   justify-content: space-between;
   width: 100%;
 }
+.home-mvi-right {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 15px;
+}
+.home-mvi-delete {
+  background-color: transparent;
+  border: none;
+  color: #000000;
+}
 
 .home-mvi-dcpt {
   text-align: left;

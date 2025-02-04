@@ -18,7 +18,23 @@ document.addEventListener(
 // FUNCTION TO INSERT NEW BILL TO DATABASE
 async function newBill() {
   const description = document.getElementById("hn-description").value.trim();
+  const value = document.getElementById("hn-value").value.trim();
+  const payment = document.getElementById("hn-payment").value;
+  const currency = document.getElementById("hn-currency").value;
+  const date = document.getElementById("hn-date").value;
+  const quantity = document.getElementById("hn-quant-value").value.trim();
+  const total = document.getElementById("hn-total").value.trim();
+  const type = document.getElementById("hn-typeBill").value;
   const userid = sessionStorage.getItem("actualSession");
+
+  console.log(description);
+  console.log(value);
+  console.log(payment);
+  console.log(currency);
+  console.log(date);
+  console.log(quantity);
+  console.log(total);
+  console.log(type);
 
   // INPUT VALIDATION
   if (!description) {
@@ -33,8 +49,19 @@ async function newBill() {
     return;
   }
 
-  const sql = "INSERT INTO bills (description, userid) VALUES (?, ?)";
-  const params = [description, userid];
+  const sql =
+    "INSERT INTO bills (description, value, payment, currency, date, quantity, total, type, userid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+  const params = [
+    description,
+    value,
+    payment,
+    currency,
+    date,
+    quantity,
+    total,
+    type,
+    userid,
+  ];
 
   // Ensure DatabaseModule is initialized
   if (!DatabaseBills) {

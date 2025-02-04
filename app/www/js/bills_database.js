@@ -22,6 +22,13 @@ const DatabaseBills = (function () {
                 `CREATE TABLE IF NOT EXISTS bills (
                   id INTEGER PRIMARY KEY AUTOINCREMENT,
                   description TEXT NOT NULL,
+                  value REAL NOT NULL,
+                  payment TEXT NOT NULL,
+                  currency TEXT NOT NULL,
+                  date TEXT NOT NULL,
+                  quantity INTEGER NOT NULL,
+                  total REAL NOT NULL,
+                  type TEXT NOT NULL,
                   userid INTEGER NOT NULL
                 )`,
                 [],
