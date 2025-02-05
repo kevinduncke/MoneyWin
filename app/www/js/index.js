@@ -1,5 +1,4 @@
 // Wait for `deviceready` before using Cordova's device APIs.
-
 document.addEventListener("deviceready", onDeviceReady, false);
 
 async function onDeviceReady() {

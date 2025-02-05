@@ -1,7 +1,5 @@
 "use strict";
 
-import { showToast } from "./toast.js";
-
 document.addEventListener(
   "deviceready",
   () => {
@@ -25,7 +23,7 @@ async function handleDeleteBill(event) {
   const billId = delButton.getAttribute("aria-label").replace("bill-", "");
   if (!billId) {
     console.error("No bill ID found for deletion");
-    showToast("No bill ID found for deletion.", "error");
+    alert("No bill ID found for deletion.", "error");
     return;
   }
   console.log(billId);
@@ -45,10 +43,10 @@ async function handleDeleteBill(event) {
       billItem.remove();
     }
 
-    showToast("Bill deleted successfully!", "success");
+    alert("Bill deleted successfully!", "success");
   } catch (error) {
     console.error("Error deleting bill: ", error.message);
-    showToast("Failed to delete bill. Please try again.", "error");
+    alert("Failed to delete bill. Please try again.", "error");
   }
 }
 

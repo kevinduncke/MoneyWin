@@ -27,15 +27,6 @@ async function newBill() {
   const type = document.getElementById("hn-typeBill").value;
   const userid = sessionStorage.getItem("actualSession");
 
-  console.log(description);
-  console.log(value);
-  console.log(payment);
-  console.log(currency);
-  console.log(date);
-  console.log(quantity);
-  console.log(total);
-  console.log(type);
-
   // INPUT VALIDATION
   if (!description) {
     console.log("Please fill in the description field.");
@@ -76,6 +67,7 @@ async function newBill() {
       console.log(
         "Bill saved successfully in database with ID: " + resultSet.insertId
       );
+      alert("Bill saved successfully in database with ID: " + resultSet.insertId);
     } else {
       console.error("Error inserting new bill into the database.");
       alert("Error inserting new bill into the database..");
@@ -85,3 +77,4 @@ async function newBill() {
     alert("Database unavailable, check your database.");
   }
 }
+
