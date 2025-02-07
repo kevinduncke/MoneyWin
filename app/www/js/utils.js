@@ -46,12 +46,12 @@ export function bills(value) {
   localStorage.setItem(`${userKey}-BILLS`, userBills.toString());
 }
 
-export function currency() {
+export function currency(value) {
   const formatter = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
   });
 
-  return formatter;
+  return formatter.format(value);
 }
 

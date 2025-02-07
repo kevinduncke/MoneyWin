@@ -29,7 +29,7 @@ async function getLoggedUserId() {
 // FUNCTION TO FETCH BILLS DATA FROM DATABASE
 async function billData(userID) {
   const sql =
-    "SELECT description, value, payment, date, id FROM bills WHERE userid = ?";
+    "SELECT description, value, payment, currency, date, id FROM bills WHERE userid = ?";
   const params = [userID];
 
   try {
@@ -73,25 +73,26 @@ function generateBillItem(bill) {
       <div class="home-mvi-icon">${sanitize(bill.id.toString())}</div>
       <div class="home-mvi-info">
         <div class="home-mvi-dcpt">
-          <h2 class="home-mvi-h2">${sanitize(
-            bill.description || "Unknown"
-          )}</h2>
-          <span class="home-mvi-span">${sanitize(
-            bill.date || "Missing Date"
-          )}</span>
+          <h2 class="home-mvi-h2">
+            ${sanitize(bill.description || "Unknown")}
+          </h2>
+          <span class="home-mvi-span">
+            ${sanitize(bill.date || "Missing Date")}
+          </span>
           <span class="home-mvi-span"> | </span>
-          <span class="home-mvi-span">${sanitize(
-            bill.payment || "No Payment Method"
-          )}</span>
+          <span class="home-mvi-span">
+            ${sanitize(bill.payment || "No Payment Method")}
+          </span>
+          <span class="home-mvi-span"> | </span>
+          <span class="home-mvi-span">
+            ${sanitize(bill.currency || "@")}
+          </span>
         </div>
         <div class="home-mvi-right">
           <div class="home-mvi-balance">
-            <h2 class="home-mvi-h2 home-mvi-red">$${sanitize(
-              bill.value || "0.00"
-            )} ${sanitize(bill.currency || "@")}</h2>
-            <span class="home-mvi-span home-mvi-green">$${sanitize(
-              bill.total || "0.00"
-            )}</span>
+            <h2 class="home-mvi-h2 home-mvi-red">
+              $${sanitize(bill.value || "0.00")}
+            </h2>
           </div>        
           <button 
             id="delete-bill-${sanitize(bill.id.toString())}" 
