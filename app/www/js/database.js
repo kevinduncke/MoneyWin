@@ -19,11 +19,14 @@ const DatabaseModule = (function () {
               tx.executeSql(
                 `CREATE TABLE IF NOT EXISTS users (
                   id INTEGER PRIMARY KEY AUTOINCREMENT, 
-                  fullname TEXT, 
-                  username TEXT, 
-                  password TEXT, 
-                  salary REAL, 
-                  registration_date TEXT
+                  fullname TEXT NOT NULL, 
+                  username TEXT NOT NULL, 
+                  password TEXT NOT NULL, 
+                  salary REAL NOT NULL, 
+                  accountBalance REAL NOT NULL,
+                  totalBills REAL NOT NULL,
+                  creditBills REAL NOT NULL,
+                  registration_date TEXT NOT NULL 
                 )`,
                 [],
                 (tx, res) => {
