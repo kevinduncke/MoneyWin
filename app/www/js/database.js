@@ -23,9 +23,6 @@ const DatabaseModule = (function () {
                   username TEXT NOT NULL, 
                   password TEXT NOT NULL, 
                   salary REAL NOT NULL, 
-                  accountBalance REAL NOT NULL,
-                  totalBills REAL NOT NULL,
-                  creditBills REAL NOT NULL,
                   registration_date TEXT NOT NULL 
                 )`,
                 [],

@@ -1,5 +1,7 @@
 "use strict";
 
+import { accountBalance } from "./balance.js";
+
 document.addEventListener(
   "deviceready",
   () => {
@@ -17,7 +19,6 @@ document.addEventListener(
 async function handleDeleteBill(event) {
   const delButton = event.target.closest(".home-mvi-delete");
   if (!delButton) return;
-  console.log(event.target);
 
   // EXTRACT BILL ID FROM ARIA-LABEL
   const billId = delButton.getAttribute("aria-label").replace("bill-", "");
@@ -26,7 +27,6 @@ async function handleDeleteBill(event) {
     alert("No bill ID found for deletion.", "error");
     return;
   }
-  console.log(billId);
 
   // CONFIRM DELETION WITH THE USER
   const confirmDelete = confirm("Are you sure you want to delete this bill.");
@@ -42,6 +42,9 @@ async function handleDeleteBill(event) {
     if (billItem) {
       billItem.remove();
     }
+
+    // UPDATE HOME BALANCE DATA
+    await accountBalance();
 
     alert("Bill deleted successfully!", "success");
   } catch (error) {

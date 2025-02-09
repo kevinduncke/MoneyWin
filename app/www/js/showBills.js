@@ -145,6 +145,7 @@ async function renderBill() {
     });
   } catch (error) {
     console.error("Error rendering bills:", error.message);
-    alert("An error occurred while rendering bills. Please try again.");
+    const mv_table = document.getElementById("home-mv-list");
+    mv_table.innerText = "No bills yet.";
   }
 }

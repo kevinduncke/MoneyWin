@@ -1,5 +1,7 @@
 "use strict";
 
+import { newRoute } from "./routing.js";
+
 document.addEventListener(
   "deviceready",
   () => {
@@ -68,6 +70,7 @@ async function newBill() {
         "Bill saved successfully in database with ID: " + resultSet.insertId
       );
       alert("Bill saved successfully in database with ID: " + resultSet.insertId);
+      newRoute("./home.html");
     } else {
       console.error("Error inserting new bill into the database.");
       alert("Error inserting new bill into the database..");

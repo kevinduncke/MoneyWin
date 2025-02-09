@@ -16,7 +16,7 @@ document.addEventListener(
 );
 
 // FUNCTION TO GET ACCOUNT BALANCE
-async function accountBalance() {
+export async function accountBalance() {
   try {
     const userID = await getLogUserId();
     const totalBalance = await billsBalance(userID);
@@ -47,7 +47,7 @@ async function accountBalance() {
       console.error("Credit Total element not found in the DOM.");
     }
   } catch (error) {
-    console.error("Failed to fetch accoun balance:", error.message);
+    console.error("Failed to fetch account balance:", error.message);
   }
 }
 
@@ -135,7 +135,6 @@ async function creditBalance(id) {
       }
       return creditBalance;
     } else {
-      console.log(0);
       return 0;
     }
   } catch (error) {
