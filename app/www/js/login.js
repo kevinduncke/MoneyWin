@@ -1,6 +1,7 @@
 "use strict";
 
 import { newRoute } from "../js/routing.js";
+import { showNotification } from "./notifications.js";
 
 document.addEventListener("deviceready", function () {
   const loginBtn = document.getElementById("login-btn");
@@ -22,7 +23,7 @@ async function handleLogin() {
   const password = loginPassword.value.trim();
 
   if (!username || !password) {
-    alert("Please enter your username and password.");
+    showNotification("Please enter your username and password.", "info");
     return;
   }
 
@@ -39,7 +40,7 @@ async function handleLogin() {
     loginSuccess();
   } catch (error) {
     console.error("Login error: ", error);
-    alert(`Login error: ${error.message}`);
+    showNotification(`Login error: ${error.message}`, "error");
   }
 }
 

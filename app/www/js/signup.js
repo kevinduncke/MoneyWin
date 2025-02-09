@@ -1,5 +1,6 @@
 "use strict";
 
+import { showNotification } from "./notifications.js";
 import { newRoute } from "./routing.js";
 
 document.addEventListener("deviceready", function () {
@@ -28,7 +29,7 @@ async function newUser() {
 
   // INPUT VALIDATION
   if (!fullname || !username || !password || isNaN(salary)) {
-    alert("Please fill all fields. Salary must be a number.");
+    showNotification("Please fill all fields. Salary must be a number.", "info");
     return;
   }
 
@@ -51,7 +52,7 @@ async function newUser() {
     );
 
     if (checkUserResult.rows.length > 0) {
-      alert("Username already exists. Please choose a different username.");
+      showNotification("Username already exists. Please choose a different username.", "info");
       return;
     }
 
@@ -62,10 +63,10 @@ async function newUser() {
       accountReload();
     } else {
       console.error("NEW USER ERROR: " + error.message);
-      alert("Cannot signup, please try again.");
+      showNotification("Cannot signup, please try again.", "error");
     }
   } catch (error) {
     console.error("Cannot signup. Try Again.", error);
-    alert("Failed to signup. Please try again.");
+    showNotification("Failed to signup. Please try again.", "error");
   }
 }

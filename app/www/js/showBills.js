@@ -1,5 +1,7 @@
 "use strict";
 
+import { showNotification } from "./notifications.js";
+
 document.addEventListener(
   "deviceready",
   async () => {
@@ -7,7 +9,7 @@ document.addEventListener(
       await renderBill();
     } catch (error) {
       console.error("Error in deviceready event:", error.message);
-      alert("An error occurred. Please check the console for details.");
+      showNotification("An error occurred. Please check the console for details.", "error");
     }
   },
   false
@@ -21,7 +23,7 @@ async function getLoggedUserId() {
     console.log("User ID found: " + userid);
     return userid;
   } else {
-    alert("There is no user logged in with ID");
+    showNotification("There is no user logged in with ID", "error");
     throw new Error("No logged-in user, can't find ID");
   }
 }

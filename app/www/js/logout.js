@@ -1,6 +1,7 @@
 "use strict";
 
 import { newRoute } from "../js/routing.js";
+import { showNotification } from "./notifications.js";
 
 document.addEventListener(
   "deviceReady",
@@ -20,10 +21,10 @@ function closeSession() {
     localStorage.removeItem("rememberUserId");
     sessionStorage.removeItem("actualSession");
     console.log("User logged out successfully");
-    alert("You have been logged out successfully.");
+    showNotification("You have been logged out successfully.", "success");
     newRoute("../index.html");
   } catch (error) {
     console.error("Cannot close the session. Try Again.", error);
-    alert("Failed to log out. Please try again.");
+    alert("Failed to log out. Please try again.", "error");
   }
 }

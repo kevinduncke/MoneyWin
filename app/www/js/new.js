@@ -1,6 +1,7 @@
 "use strict";
 
 import { newRoute } from "./routing.js";
+import { showNotification } from "./notifications.js";
 
 document.addEventListener(
   "deviceready",
@@ -12,10 +13,35 @@ document.addEventListener(
       });
     } else {
       console.error("Save bill button not found in the DOM.");
+    } 
+
+    // REAL-TIME CALCULATION | TOTAL BILL
+    const valueBill = document.getElementById("hn-value");
+    const quantityBill = document.getElementById("hn-quant-value");
+    const totalBill = document.getElementById("hn-total");
+
+    if(valueBill && quantityBill && totalBill){
+      valueBill.addEventListener("input", calculateTotal);
+      quantityBill.addEventListener("input", calculateTotal);
+    } else {
+      console.error("One or more input fields for calculation are missing.");
+      showNotification("One or more input fields for calculation are missing.", "error");
     }
   },
   false
 );
+
+// FUNCTION TO CALCULATE TOTAL BILL
+function calculateTotal(){
+  const value = parseFloat(document.getElementById("hn-value").value.trim()) || 0;
+  const quantity = parseFloat(document.getElementById("hn-quant-value").value.trim()) || 0;
+  const totalInput = document.getElementById("hn-total");
+
+  if(totalInput){
+    const total = value * quantity;
+    totalInput.value = total.toFixed(2);
+  }
+}
 
 // FUNCTION TO INSERT NEW BILL TO DATABASE
 async function newBill() {
@@ -32,13 +58,13 @@ async function newBill() {
   // INPUT VALIDATION
   if (!description) {
     console.log("Please fill in the description field.");
-    alert("Please fill in the description field.");
+    showNotification("Please fill in the description field.", "info");
     return;
   }
   // USER ID VALIDATION
   if (!userid) {
     console.log("User not logged in. Please sign in.");
-    alert("User not logged in. Please sign in.");
+    showNotification("User not logged in. Please sign in.", "info");
     return;
   }
 
@@ -59,7 +85,7 @@ async function newBill() {
   // Ensure DatabaseModule is initialized
   if (!DatabaseBills) {
     console.error("DatabaseBills is not initialized. Please check your setup.");
-    alert("DatabaseBills is not initialized. Please check your setup.");
+    showNotification("DatabaseBills is not initialized. Please check your setup.", "error");
   }
 
   try {
@@ -69,15 +95,15 @@ async function newBill() {
       console.log(
         "Bill saved successfully in database with ID: " + resultSet.insertId
       );
-      alert("Bill saved successfully in database with ID: " + resultSet.insertId);
+      showNotification("Bill saved successfully in database with ID: " + resultSet.insertId, "success");
       newRoute("./home.html");
     } else {
       console.error("Error inserting new bill into the database.");
-      alert("Error inserting new bill into the database..");
+      showNotification("Error inserting new bill into the database..", "error");
     }
   } catch (error) {
     console.error("Database unavailable, check your database: ", error);
-    alert("Database unavailable, check your database.");
+    showNotification("Database unavailable, check your database.", "error");
   }
 }
 

@@ -1,5 +1,7 @@
 "use strict";
 
+import { showNotification } from "./notifications.js";
+
 document.addEventListener(
   "deviceready",
   async () => {
@@ -55,7 +57,7 @@ async function accountData(userId) {
       throw new Error("No user found with the provided ID.");
     }
   } catch (error) {
-    alert(error);
+    showNotification("Error executing query","error");
     console.error("Error executing query: ", error);
     throw error;
   }

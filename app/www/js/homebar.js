@@ -1,4 +1,5 @@
 import { calendar, time } from "./utils.js";
+import { showNotification } from "./notifications.js";
 
 document.addEventListener("deviceReady", () => {
   try {
@@ -27,7 +28,7 @@ document.addEventListener("deviceReady", () => {
     // setElementText("bvi-account", currency().format(balance()));
   } catch (error) {
     console.error("Error in homebar.js: ", error);
-    alert("An error occurred. Please check the console for details.");
+    showNotification("An error occurred. Please check the console for details.", "error");
   }
 });
 
@@ -57,11 +58,11 @@ async function setFullname() {
       const user = resultSet.rows.item(0);
       setElementText("home-username", user.fullname);
     } else {
-      alert("No user is currently logged in.");
+      showNotification("No user is currently logged in.", "error");
       throw new Error("No user is currently logged in.");
     }
   } catch (error) {
-    alert(error);
+    showNotification("Error executing query", "error");
     console.error("Error executing query: ", error);
     throw error;
   }

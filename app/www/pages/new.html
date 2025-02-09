@@ -99,6 +99,7 @@
                 id="hn-total"
                 name="hn-total"
                 placeholder="$"
+                disabled
               />
             </div>
           </div>
@@ -144,6 +145,7 @@
         </button>
       </div>
     </div>
+    <div id="toast-container"></div>
     <div class="app-navbar">
       <div class="navbar-divbtn">
         <a href="./home.html" class="g-anchor">
@@ -222,28 +224,6 @@
         </a>
       </div>
     </div>
-    <!-- Toast Container -->
-    <div
-      id="liveToast"
-      class="toast"
-      role="alert"
-      aria-live="assertive"
-      aria-atomic="true"
-    >
-      <div class="toast-header">
-        <strong class="me-auto">Info</strong>
-        <!-- Default header -->
-        <small>Just now</small>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="toast"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="toast-body">This is a Bootstrap toast message!</div>
-      <!-- Default body -->
-    </div>
   </body>
   <script src="../cordova.js"></script>
   <script src="../js/database.js"></script>
@@ -253,6 +233,7 @@
   <script type="module" src="../js/homebar.js"></script>
   <script type="module" src="../js/new.js"></script>
   <script type="module" src="../js/routing.js"></script>
+  <script type="module" src="../js/notifications.js"></script>
   <script src="../js/cancelBill.js"></script>
   <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </html>

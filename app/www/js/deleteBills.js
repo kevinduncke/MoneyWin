@@ -1,6 +1,7 @@
 "use strict";
 
 import { accountBalance } from "./balance.js";
+import { showNotification } from "./notifications.js";
 
 document.addEventListener(
   "deviceready",
@@ -24,7 +25,7 @@ async function handleDeleteBill(event) {
   const billId = delButton.getAttribute("aria-label").replace("bill-", "");
   if (!billId) {
     console.error("No bill ID found for deletion");
-    alert("No bill ID found for deletion.", "error");
+    showNotification("No bill ID found for deletion.", "error");
     return;
   }
 
@@ -46,10 +47,10 @@ async function handleDeleteBill(event) {
     // UPDATE HOME BALANCE DATA
     await accountBalance();
 
-    alert("Bill deleted successfully!", "success");
+    showNotification("Bill deleted successfully!", "success");
   } catch (error) {
     console.error("Error deleting bill: ", error.message);
-    alert("Failed to delete bill. Please try again.", "error");
+    showNotification("Failed to delete bill. Please try again.", "error");
   }
 }
 

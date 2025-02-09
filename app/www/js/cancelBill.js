@@ -1,3 +1,7 @@
+"use strict";
+
+import { showNotification } from "./notifications.js";
+
 document.addEventListener(
   "deviceready",
   () => {
@@ -25,7 +29,7 @@ function clearInputs() {
   // Check if all elements exist
   if (!description || !value || !date || !quantity) {
     console.error("Error: One or more DOM elements not found.");
-    alert("Error: Cannot clear the fields. Required elements are missing.");
+    showNotification("Error: Cannot clear the fields. Required elements are missing.", "error");
     return; // Stop execution if any element is missing
   }
 
@@ -38,6 +42,6 @@ function clearInputs() {
     console.log("Input fields cleared successfully.");
   } catch (error) {
     console.error("Error: Cannot clear the fields.", error);
-    alert("Error: Cannot clear the fields. Please try again.");
+    showNotification("Error: Cannot clear the fields. Please try again.", "error");
   }
 }

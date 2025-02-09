@@ -124,27 +124,51 @@
   --main-moneywin-color: #448060;
 }
 
-/* Custom Toast Colors */
-.bg-success {
-  background-color: #28a745 !important; /* Green */
+/*=== TOAST NOTIFICATION ===*/
+/* Notification Container */
+#toast-container {
+  position: absolute;
+  bottom: 35%;
+  right: 12.5%;
+  width: 75%;
+  z-index: 1000;
 }
 
-.bg-error {
-  background-color: #dc3545 !important; /* Red */
+/* Toast Notification Styles */
+.toast-notification {
+  padding: 35px 20px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  color: white;
+  text-align: center;
+  font-family: 'Poppins Medium', sans-serif;
+  opacity: 0;
+  transform: translateX(100%);
+  animation: slideIn 0.5s ease-out forwards, fadeOut 0.5s ease-in 4.5s forwards;
 }
 
-.bg-warning {
-  background-color: #ffc107 !important; /* Yellow */
+.toast-notification.success {
+  background-color: #448060;
 }
 
-.bg-info {
-  background-color: #17a2b8 !important; /* Blue */
+.toast-notification.error {
+  background-color: #dc3545;
 }
 
-.text-white {
-  color: white !important;
+.toast-notification.info {
+  background-color: #17a2b8;
 }
 
-.text-dark {
-  color: black !important;
+/* Animations */
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
 }

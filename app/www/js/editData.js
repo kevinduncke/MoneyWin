@@ -48,7 +48,6 @@ function editData(id) {
 
 // FUNCTION TO SAVE EDITED USER DATA
 async function saveData(id) {
-  alert(`Saving data...`);
   const elements = getElements(id);
 
   if (elements) {
@@ -59,7 +58,7 @@ async function saveData(id) {
     const newValue = elements.input.value.trim();
 
     if (!newValue) {
-      alert("Please enter a valid value.");
+      showNotification("Please enter a valid value.", "info");
       return;
     }
 
@@ -100,14 +99,13 @@ async function getLoggedInUserId() {
   try {
     // RETRIVE USER'S ID
     const userId = sessionStorage.getItem("actualSession");
-    alert(userId);
     if(userId){
       return userId;
     } else {
       throw new Error("User ID not found in local storage.");
     }
   } catch (error) {
-    alert("Error in editData.js: " + error);
+    showNotification("Error in editData.js", "error");
     throw new Error("An error occurred. Please check the console for details.");
   }
 }
@@ -115,7 +113,6 @@ async function getLoggedInUserId() {
 // FUNCTION TO UPDATE THE DATABASE
 async function updateDatabase(field, newValue) {
   try {
-    alert("Updating the database..");
     // GET THE LOGGED-IN USER'S ID
     const loggedInUserId = await getLoggedInUserId();
 
@@ -148,13 +145,12 @@ async function updateDatabase(field, newValue) {
     // CHECK IF THE UPDATE WAS SUCCESSFUL
     if (resultSet.rowsAffected > 0) {
       console.log("Database updated successfully.");
-      alert("Data saved successfully.");
+      showNotification("Data saved successfully.", "success");
     } else {
       console.error("No rows were updated. Check the user ID and field values.");
-      alert("No changes were made. Please check your input.");
+      showNotification("No changes were made. Please check your input.", "error");
     }
   } catch (error) {
     console.error(error);
-    alert(error);
   }
 }

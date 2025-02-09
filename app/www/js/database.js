@@ -1,3 +1,5 @@
+"use strict";
+
 const DatabaseModule = (function () {
   let db;
 
@@ -31,8 +33,7 @@ const DatabaseModule = (function () {
                   resolve();
                 },
                 (tx, err) => {
-                  console.log("CREATE TABLE ERROR: " + err.message);
-                  alert("CREATE TABLE ERROR: " + err.message);
+                  console.log("CREATE TABLE ERROR: " + err.message);                  
                   reject();
                 }
               );
