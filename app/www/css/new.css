@@ -6,7 +6,9 @@
   margin-bottom: 30px;
   text-align: center;
 }
-
+.g-boxinput {
+  margin: 10px 0;
+}
 .hn-input-text {
   margin: 0;
   text-align: left;

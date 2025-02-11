@@ -21,6 +21,7 @@
       content="initial-scale=1, width=device-width, viewport-fit=cover"
     />
     <meta name="color-scheme" content="light dark" />
+    <!-- <link rel="stylesheet" href="dist/styles.css" /> -->
     <link rel="stylesheet" href="css/index.css" />
     <link rel="stylesheet" href="css/logo.css" />
     <link rel="stylesheet" href="css/global.css" />
@@ -115,12 +116,15 @@
           alt="circle-check"
         />
       </div>
+      <div id="toast-container"></div>
     </div>
   </body>
   <script src="cordova.js"></script>
+  <!-- <script src="./dist/bundle.js"></script> -->
   <script src="js/database.js"></script>
   <script type="module" src="./js/index.js"></script>
   <script type="module" src="./js/login.js"></script>
   <script type="module" src="./js/routing.js"></script>
   <script type="module" src="./js/notifications.js"></script>
+  <script type="module" src="../js/hashing.js"></script>
 </html>

@@ -1,5 +1,6 @@
 "use strict";
 
+import { hashPassword } from "./hashing.js";
 import { showNotification } from "./notifications.js";
 import { newRoute } from "./routing.js";
 
@@ -29,13 +30,30 @@ async function newUser() {
 
   // INPUT VALIDATION
   if (!fullname || !username || !password || isNaN(salary)) {
-    showNotification("Please fill all fields. Salary must be a number.", "info");
+    showNotification(
+      "Please fill all fields. Salary must be a number.",
+      "info"
+    );
     return;
   }
 
+  // HASHING PASSWORD
+  const hashedPassword = await hashPassword(password);
+  if(!hashPassword){
+    console.error("Cannot hash the password. Try again.");
+    return;
+  }
+  console.log("Hashed Password:", hashedPassword);
+
   const sql =
     "INSERT INTO users (fullname, username, password, salary, registration_date) VALUES (?, ?, ?, ?, ?)";
-  const params = [fullname, username, password, salary, registration_date];
+  const params = [
+    fullname,
+    username,
+    hashedPassword,
+    salary,
+    registration_date,
+  ];
 
   // Ensure DatabaseModule is initialized
   if (!DatabaseModule) {
@@ -52,7 +70,10 @@ async function newUser() {
     );
 
     if (checkUserResult.rows.length > 0) {
-      showNotification("Username already exists. Please choose a different username.", "info");
+      showNotification(
+        "Username already exists. Please choose a different username.",
+        "info"
+      );
       return;
     }
 

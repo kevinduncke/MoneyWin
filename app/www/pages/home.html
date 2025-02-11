@@ -22,10 +22,10 @@
     <title>Home | MoneyWin</title>
   </head>
   <body>
-    <div class="app_logo">
-      <img id="logo" src="../img/MoneyWin.svg" alt="MoneyWin logo" />
-    </div>
-    <div class="app-home">
+    <header class="app_logo">
+      <img id="logo" src="../img/MoneyWin.svg" alt="MoneyWin logo" loading="lazy"/>
+    </header>
+    <main class="app-home">
       <div id="home-status-bar">
         <div>
           <p>Hello</p>
@@ -37,10 +37,10 @@
         </div>
       </div>
       <div id="home-dateview">
-        <button class="home-filter-btn">
+        <div class="home-filter-btn">
           <span id="home-month-filter"></span>
           <img src="../img/chevron-down-solid.svg" alt="chevron-down" />
-        </button>
+        </div>
       </div>
       <div id="home-balanceview">
         <div class="home-bv-items bvi-brd">
@@ -57,25 +57,25 @@
         </div>
       </div>
       <div id="home-functions">
-        <a class="fn-links">
+        <a class="fn-links" aria-label="Services">
           <div class="fn-btns-div">
             <img src="../img/lightbulb-regular.svg" alt="Services" />
             <p>Services</p>
           </div>
         </a>
-        <a class="fn-links">
+        <a class="fn-links" aria-label="Cards">
           <div class="fn-btns-div">
             <img src="../img/credit-card-regular.svg" alt="Cards" />
             <p>Cards</p>
           </div>
         </a>
-        <a class="fn-links">
+        <a class="fn-links" aria-label="Others">
           <div class="fn-btns-div">
             <img src="../img/mug-hot-solid.svg" alt="Others" />
             <p>Others</p>
           </div>
         </a>
-        <a class="fn-links">
+        <a class="fn-links" aria-label="Taxes">
           <div class="fn-btns-div">
             <img src="../img/scale-balanced-solid.svg" alt="Taxes" />
             <p>Taxes</p>
@@ -83,28 +83,19 @@
         </a>
       </div>
       <div id="home-movements">
-        <a href="./movements-view.html" id="home-lst-mv">
+        <div id="home-lst-mv">
           <div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="#717171"
-              viewBox="0 0 320 512"
-            >
-              <path
-                d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"
-              />
-            </svg>
             <span>Last Movements</span>
           </div>
-        </a>
+        </div>
         <div id="home-mv-list">
         </div>
       </div>
-    </div>
-    <div id="toast-container"></div>
-    <div class="app-navbar">
+      <div id="toast-container"></div>
+    </main>
+    <footer class="app-navbar">
       <div class="navbar-divbtn">
-        <a href="./home.html" class="g-anchor">
+        <a href="./home.html" class="g-anchor" aria-label="Home">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -120,7 +111,7 @@
         </a>
       </div>
       <div class="navbar-divbtn">
-        <a href="./new.html" class="g-anchor">
+        <a href="./new.html" class="g-anchor" aria-label="New">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -143,7 +134,7 @@
         </a>
       </div>
       <div class="navbar-divbtn">
-        <a href="./account.html" class="g-anchor">
+        <a href="./account.html" class="g-anchor" aria-label="Account">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -159,7 +150,7 @@
         </a>
       </div>
       <div class="navbar-divbtn">
-        <a href="#" class="g-anchor">
+        <a href="#" class="g-anchor" aria-label="Feature Disabled">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -179,7 +170,7 @@
           </svg>
         </a>
       </div>
-    </div>
+    </footer>
   </body>
   <script src="../cordova.js"></script>
   <script src="../js/database.js"></script>
@@ -188,8 +179,8 @@
   <script type="module" src="../js/billex.js"></script>
   <script type="module" src="../js/homebar.js"></script>
   <script type="module" src="../js/showBills.js"></script>
-  <script type="module" src="../js/deleteBills.js"></script>
+  <script defer type="module" src="../js/deleteBills.js"></script>
   <script type="module" src="../js/balance.js"></script>
   <script type="module" src="../js/utils.js"></script>
-  <script type="module" src="../js/notifications.js"></script>
+  <script defer type="module" src="../js/notifications.js"></script>
 </html>

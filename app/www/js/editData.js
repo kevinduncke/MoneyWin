@@ -1,3 +1,8 @@
+"use strict";
+
+import { hashPassword } from "./hashing.js";
+import { showNotification } from "./notifications.js";
+
 document.addEventListener(
   "deviceready",
   () => {
@@ -55,7 +60,10 @@ async function saveData(id) {
     elements.editBtn.style.display = "block";
     elements.saveBtn.style.display = "none";
 
-    const newValue = elements.input.value.trim();
+    let newValue = elements.input.value.trim();
+    if(id === 'password'){
+      newValue = await hashPassword(newValue);
+    }
 
     if (!newValue) {
       showNotification("Please enter a valid value.", "info");

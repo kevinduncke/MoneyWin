@@ -19,12 +19,9 @@
   padding: 20px 25px;
 }
 #home-status-bar p {
-  font-family: "Poppins Light";
-  font-size: 13px;
+  font-family: "Poppins Medium";
+  font-size: 14px;
   margin: 3px 0;
-}
-#home-username {
-  font-family: "Poppins Medium" !important;
 }
 #home-status-bar div:nth-last-child(1) {
   text-align: right;
@@ -39,8 +36,6 @@
   justify-content: center;
 }
 .home-filter-btn {
-  background-color: transparent;
-  border: none;
   font-family: "Poppins Bold";
   font-size: 16px;
   text-transform: uppercase;
@@ -73,17 +68,17 @@
 }
 .home-bv-items span {
   font-family: "Poppins Medium";
-  font-size: 14px;
+  font-size: 16px;
   text-transform: uppercase;
 }
 #bvi-account {
-  color: #0ea85f;
+  color: #00664a;
 }
 #bvi-bills {
   color: #a80303;
 }
 #bvi-credit {
-  color: #0884ac;
+  color: #0851ac;
 }
 
 /*=================*/
@@ -104,8 +99,11 @@
 .fn-btns-div {
   background-color: var(--main-moneywin-color);
   text-align: center;
-  padding: 10px 0;
+  padding: 15px 0;
   border-radius: 10px;
+  -webkit-box-shadow: 10px 10px 43px 0px rgba(176, 176, 176, 1);
+  -moz-box-shadow: 10px 10px 43px 0px rgba(176, 176, 176, 1);
+  box-shadow: 10px 10px 43px 0px rgba(176, 176, 176, 1);
 }
 .fn-btns-div img {
   height: 15px;
@@ -129,9 +127,8 @@
 #home-lst-mv {
   font-family: "Poppins Medium";
   font-size: 16px;
-  text-decoration: none;
   text-align: left;
-  color: #717171;
+  color: #575757;
 }
 #home-lst-mv div {
   display: flex;
@@ -154,15 +151,16 @@
   display: flex;
   align-items: center;
   padding: 7px 10px;
-  box-shadow: 1px -1px 35px 5px rgb(248, 248, 248);
-  column-gap: 20px;
+  column-gap: 10px;
+  margin: 10px 0;
 }
 .home-mvi-icon {
-  padding: 13px 22px;
+  padding: 13px 15px;
   background-color: #f9f9f9;
-  border-radius: 100px;
+  border-radius: 85px;
   font-family: "Poppins Medium";
-  font-size: 16px;
+  font-size: 14px;
+  color: #000000;
 }
 .home-mvi-info {
   display: flex;
@@ -193,7 +191,7 @@
   color: #a80303;
 }
 .home-mvi-green {
-  color: #448060;
+  color: #00614a;
 }
 .home-mvi-h2 {
   font-family: "Poppins Medium";
@@ -203,4 +201,5 @@
 .home-mvi-span {
   font-family: "Poppins Light";
   font-size: 12px;
+  text-transform: capitalize;
 }

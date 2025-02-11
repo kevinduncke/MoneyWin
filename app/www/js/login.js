@@ -1,6 +1,7 @@
 "use strict";
 
 import { newRoute } from "../js/routing.js";
+import { hashPassword } from "./hashing.js";
 import { showNotification } from "./notifications.js";
 
 document.addEventListener("deviceready", function () {
@@ -12,6 +13,12 @@ document.addEventListener("deviceready", function () {
 
   autoLogin();
 });
+
+// FUNCTION TO VERIFY PASSWORD
+async function verifyPassword(inputPassword, storedHash) {
+  const inputHash = await hashPassword(inputPassword);
+  return inputHash === storedHash;
+}
 
 // FUNCTION TO HANDLE LOGIN FORM
 async function handleLogin() {
@@ -46,29 +53,37 @@ async function handleLogin() {
 
 // FUNCTION TO AUTH USER
 async function authenticateUser(username, password) {
-  const sql = "SELECT * FROM users WHERE username = ? AND password = ?";
-  const params = [username, password];
+  const sql = "SELECT id, password FROM users WHERE username = ?";
+  const params = [username];
 
   try {
     // Ensure DatabaseModule is initialized
     if (!DatabaseModule) {
+      showNotification("Error trying to fetch data in database.", "error");
       throw new Error("Database module is not initialized.");
-    }    
+    }
     const resultSet = await DatabaseModule.executeQuery(sql, params);
     if (resultSet.rows.length > 0) {
       const user = resultSet.rows.item(0);
+      const hashedPassword = user.password;
+      // Verify the password
+      const isMatch = await verifyPassword(password, hashedPassword);
 
-      if (username === user.username && password === user.password) {
-        console.log("User signed in successfully.");
+      if (isMatch) {
+        console.log("Login successful!");
+        showNotification("Login successful!", "success");
         return user;
       } else {
-        throw new Error("Invalid credentials. Please try again.");
+        console.log("Invalid username or password.");
+        showNotification("Invalid username or password.", "error");
       }
     } else {
-      throw new Error("Username not found.");
+      console.log("User not found.");
+      showNotification("User not found", "error");
     }
   } catch (error) {
-    throw new Error("Select Error: " + error.message);
+    console.error("Login error: ", error);
+    showNotification("Failed to login. Please try again.", "error");
   }
 }
 
@@ -87,14 +102,19 @@ function loginSuccess() {
 async function autoLogin() {
   try {
     const rememberUserId = localStorage.getItem("rememberUserId");
+    if (!rememberUserId) return;
+
     const user = await getUserById(rememberUserId);
     if (user) {
       console.log("User logged in automatically");
       sessionStorage.setItem("actualSession", user.id);
       loginSuccess();
+    } else {
+      localStorage.removeItem("rememberUserId");
     }
   } catch (error) {
     console.error("Auto-login error: ", error);
+    showNotification("An error occurred during auto-login.", "error");
   }
 }
 
@@ -106,7 +126,7 @@ async function getUserById(userId) {
     // Ensure DatabaseModule is initialized
     if (!DatabaseModule) {
       throw new Error("Database module is not initialized.");
-    }    
+    }
     const resultSet = await DatabaseModule.executeQuery(sql, params);
     if (resultSet.rows.length > 0) {
       return resultSet.rows.item(0);
@@ -114,6 +134,7 @@ async function getUserById(userId) {
       return null;
     }
   } catch (error) {
-    throw new Error("Select Error: " + error.message);
+    console.error("Database error: ", error);
+    throw new Error("An error occurred while processing your request.");
   }
 }
