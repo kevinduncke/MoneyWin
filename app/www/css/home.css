@@ -151,11 +151,11 @@
   display: flex;
   align-items: center;
   padding: 7px 10px;
-  column-gap: 10px;
+  column-gap: 20px;
   margin: 10px 0;
 }
 .home-mvi-icon {
-  padding: 13px 15px;
+  padding: 13px 20px;
   background-color: #f9f9f9;
   border-radius: 85px;
   font-family: "Poppins Medium";
@@ -171,21 +171,18 @@
 }
 .home-mvi-right {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  column-gap: 15px;
+  flex-direction: column;
+  align-items: flex-end;
 }
 .home-mvi-delete {
   background-color: transparent;
   border: none;
+  padding: 0;
   color: #000000;
 }
 
 .home-mvi-dcpt {
   text-align: left;
-}
-.home-mvi-balance {
-  text-align: right;
 }
 .home-mvi-red {
   color: #a80303;
@@ -195,8 +192,9 @@
 }
 .home-mvi-h2 {
   font-family: "Poppins Medium";
-  font-size: 14px;
+  font-size: 16px;
   margin: 0;
+  color: #000000;
 }
 .home-mvi-span {
   font-family: "Poppins Light";

@@ -21,7 +21,6 @@ export async function accountBalance() {
   try {
     const userID = await getLogUserId();
     const totalBalance = await billsBalance(userID);
-    const totalCredit = await creditBalance(userID);
     const totalSalary = await salaryBalance(userID, totalBalance);
 
     // DISPLAY SALARY BALANCE
@@ -38,14 +37,6 @@ export async function accountBalance() {
       billsTotal.textContent = currency(totalBalance.toFixed(2));
     } else {
       console.error("Bill Total element not found in the DOM.");
-    }
-
-    // DISPLAY THE CREDIT BALANCE
-    const creditTotal = document.getElementById("bvi-credit");
-    if (creditTotal) {
-      creditTotal.textContent = currency(totalCredit.toFixed(2));
-    } else {
-      console.error("Credit Total element not found in the DOM.");
     }
   } catch (error) {
     console.error("Failed to fetch account balance:", error.message);
@@ -103,38 +94,6 @@ async function billsBalance(id) {
         totalBalance += resultSet.rows.item(i).total;
       }
       return totalBalance;
-    } else {
-      return 0;
-    }
-  } catch (error) {
-    console.error(
-      "An error occurred while fetching bill data. Please try again.",
-      error.message
-    );
-    throw error;
-  }
-}
-
-// FUNCTION TO GET TOTAL CREDIT BALANCE
-async function creditBalance(id) {
-  const sql = "SELECT total FROM bills WHERE type = ? AND userid = ?";
-  const params = ["Cards", id];
-
-  try {
-    // ENSURE DATABASE BILLS IS INITIALIZED
-    if (!DatabaseBills) {
-      throw new Error(
-        "Database bills is not initialized. Please check your setup."
-      );
-    }
-
-    const resultSet = await DatabaseBills.executeQuery(sql, params);
-    if (resultSet.rows.length > 0) {
-      let creditBalance = 0;
-      for (let i = 0; i < resultSet.rows.length; i++) {
-        creditBalance += resultSet.rows.item(i).total;
-      }
-      return creditBalance;
     } else {
       return 0;
     }

@@ -81,11 +81,11 @@ function generateBillItem(bill) {
           <span class="home-mvi-span">
             ${sanitize(bill.date || "Missing Date")}
           </span>
-          <span class="home-mvi-span"> | </span>
+          <span class="home-mvi-span"> · </span>
           <span class="home-mvi-span">
             ${sanitize(bill.payment || "No Payment Method")}
           </span>
-          <span class="home-mvi-span"> | </span>
+          <span class="home-mvi-span"> · </span>
           <span class="home-mvi-span">
             ${sanitize(bill.currency || "@")}
           </span>
