@@ -23,7 +23,12 @@
   </head>
   <body>
     <header class="app_logo">
-      <img id="logo" src="../img/MoneyWin.svg" alt="MoneyWin logo" loading="lazy"/>
+      <img
+        id="logo"
+        src="../img/MoneyWin.svg"
+        alt="MoneyWin logo"
+        loading="lazy"
+      />
     </header>
     <main class="app-home">
       <div id="home-status-bar">
@@ -84,7 +89,32 @@
             <span>Last Movements</span>
           </div>
         </div>
-        <div id="home-mv-list">     
+        <div id="home-mv-list">
+          <div class="home-mv-item">
+            <button
+              id="delete-bill-1"
+              class="home-mvi-delete"
+              aria-label="bill-1"
+            >
+              <div class="home-mvi-icon">1</div>
+            </button>
+            <div class="home-mvi-info">
+              <div class="home-mvi-dcpt">
+                <h2 class="home-mvi-h2">Mercado Libre</h2>
+                <span class="home-mvi-span"> 2025-03-04 </span>
+                <span class="home-mvi-span"> · </span>
+                <span class="home-mvi-span"> Credit </span>
+                <span class="home-mvi-span"> · </span>
+                <span class="home-mvi-span"> Ars </span>
+              </div>
+              <div class="home-mvi-right">
+                <div class="home-mvi-balance">
+                  <h2 class="home-mvi-h2">- $50000</h2>                  
+                </div>
+                <span>$542000</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div id="toast-container"></div>
@@ -170,13 +200,16 @@
   </body>
   <script src="../cordova.js"></script>
   <script src="../js/database.js"></script>
-  <script src="../js/bills_database.js"></script>
   <script type="module" src="../js/index.js"></script>
+  <script src="../js/balance_db.js"></script>
+  <script type="module" src="../js/balancex.js"></script>
+  <script src="../js/bills_database.js"></script>
   <script type="module" src="../js/billex.js"></script>
+  <script type="module" src="../js/balance.js"></script>
+  <script type="module" src="../js/saveBalances.js"></script>
   <script type="module" src="../js/homebar.js"></script>
   <script type="module" src="../js/showBills.js"></script>
   <script defer type="module" src="../js/deleteBills.js"></script>
-  <script type="module" src="../js/balance.js"></script>
   <script type="module" src="../js/utils.js"></script>
   <script defer type="module" src="../js/notifications.js"></script>
 </html>

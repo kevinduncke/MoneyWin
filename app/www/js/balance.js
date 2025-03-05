@@ -1,6 +1,7 @@
 "use strict";
 
 import { showNotification } from "./notifications.js";
+import { updateBalances } from "./saveBalances.js";
 import { currency } from "./utils.js";
 
 document.addEventListener(
@@ -31,20 +32,26 @@ export async function accountBalance() {
       console.error("Salary element not found in the DOM.");
     }
 
-    // DISPLAY THE TOTAL BALANCE
+    // DISPLAY THE BILL BALANCE
     const billsTotal = document.getElementById("bvi-bills");
     if (billsTotal) {
       billsTotal.textContent = currency(totalBalance.toFixed(2));
     } else {
       console.error("Bill Total element not found in the DOM.");
     }
+
+    // UPDATE SALARY AND BILL BALANCES
+    console.log("TOTAL SALARY: " + totalSalary);
+    console.log("TOTAL BALANCE: " + totalBalance);
+    updateBalances(userID, totalSalary, totalBalance);
+    
   } catch (error) {
     console.error("Failed to fetch account balance:", error.message);
   }
 }
 
 // FUNCTION TO GET SALARY BALANCE
-async function salaryBalance(id, bills) {
+export async function salaryBalance(id, bills) {
   const sql = "SELECT salary FROM users WHERE id = ?";
   const params = [id];
 
@@ -107,7 +114,7 @@ async function billsBalance(id) {
 }
 
 // FUNCTION TO FETCH LOGGED USER ID
-async function getLogUserId() {
+export async function getLogUserId() {
   // RETRIVE USER'S ID
   const userid = sessionStorage.getItem("actualSession");
   if (userid) {

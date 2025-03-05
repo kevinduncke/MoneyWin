@@ -1,6 +1,8 @@
 "use strict";
 
 import { showNotification } from "./notifications.js";
+import { getSalaryBalance } from "./saveBalances.js";
+import { currency } from "./utils.js";
 
 document.addEventListener(
   "deviceready",
@@ -50,7 +52,7 @@ async function billData(userID) {
       }
       return bills;
     } else {
-      throw new Error("No bills found for the logged-in user.");
+      console.log("No bills found for the logged-in user.");
     }
   } catch (error) {
     console.error(
@@ -69,10 +71,18 @@ function sanitize(str) {
 }
 
 // FUNCTION TO GENERATE HTML ITEM TEMPLATE FOR BILL DATA
-function generateBillItem(bill) {
+async function generateBillItem(bill) {
+  let salaryValue = await getSalaryBalance(sessionStorage.getItem("actualSession"));
+
   return `
     <div class="home-mv-item">
-      <div class="home-mvi-icon">${sanitize(bill.id.toString())}</div>
+      <button 
+        id="delete-bill-${sanitize(bill.id.toString())}" 
+        class="home-mvi-delete" 
+        aria-label="bill-${sanitize(bill.id.toString())}"
+        >
+          <div class="home-mvi-icon">${sanitize(bill.id.toString())}</div>
+      </button>  
       <div class="home-mvi-info">
         <div class="home-mvi-dcpt">
           <h2 class="home-mvi-h2">
@@ -92,30 +102,11 @@ function generateBillItem(bill) {
         </div>
         <div class="home-mvi-right">
           <div class="home-mvi-balance">
-            <h2 class="home-mvi-h2 home-mvi-red">
-              $${sanitize(bill.value || "0.00")}
+            <h2 class="home-mvi-h2">
+              - ${sanitize(currency(bill.value) || "0.00")}
             </h2>
-          </div>        
-          <button 
-            id="delete-bill-${sanitize(bill.id.toString())}" 
-            class="home-mvi-delete" 
-            aria-label="bill-${sanitize(bill.id.toString())}"
-            >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              class="bi bi-x"
-              viewBox="0 0 16 16"
-            >
-            <path
-              d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 
-              .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 
-              2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"
-            />
-            </svg>
-          </button>
+          </div>    
+          <span>${sanitize(currency(salaryValue.salaryBalance))}</span>    
         </div>
       </div>
     </div>
@@ -138,16 +129,21 @@ async function renderBill() {
     mv_table.innerHTML = "";
 
     // Append each bill to the list
-    bills.forEach((bill) => {
-      console.log(
-        "USER BILL DATA ID " + bill.id + ", DESCRIPTION: " + bill.description
-      );
-      const billItemHTML = generateBillItem(bill); // Generate the HTML for each bill
-      mv_table.insertAdjacentHTML("beforeend", billItemHTML); // Insert the generated HTML into the DOM
-    });
+    if(bills){
+      for (const bill of bills) {
+        console.log(
+          "USER BILL DATA ID " + bill.id + ", DESCRIPTION: " + bill.description
+        );
+        const billItemHTML = await generateBillItem(bill); // Generate the HTML for each bill
+        mv_table.insertAdjacentHTML("beforeend", billItemHTML); // Insert the generated HTML into the DOM
+      };
+    } else {
+      console.log("No bills yet.");
+      const mv_table = document.getElementById("home-mv-list");
+      mv_table.innerText = "No bills yet.";
+      mv_table.style.textAlign = "center";
+    }
   } catch (error) {
     console.error("Error rendering bills:", error.message);
-    const mv_table = document.getElementById("home-mv-list");
-    mv_table.innerText = "No bills yet.";
   }
 }

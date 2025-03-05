@@ -3,6 +3,7 @@
 import { hashPassword } from "./hashing.js";
 import { showNotification } from "./notifications.js";
 import { newRoute } from "./routing.js";
+import { setSalaryBalance } from "./saveBalances.js";
 
 document.addEventListener("deviceready", function () {
   const signupBtn = document.getElementById("signup-btn");
@@ -81,6 +82,10 @@ async function newUser() {
     const resultSet = await DatabaseModule.executeQuery(sql, params);
     if (resultSet.rowsAffected > 0) {
       console.log("User signed up successfully with ID: " + resultSet.insertId);
+
+      // SET SALARY AND BILLS BALANCE TO DATABASE
+      await setSalaryBalance(salary);
+
       accountReload();
     } else {
       console.error("NEW USER ERROR: " + error.message);
@@ -91,3 +96,5 @@ async function newUser() {
     showNotification("Failed to signup. Please try again.", "error");
   }
 }
+
+
