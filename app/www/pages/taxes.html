@@ -18,8 +18,9 @@
     <link rel="stylesheet" href="../css/logo.css" />
     <link rel="stylesheet" href="../css/global.css" />
     <link rel="stylesheet" href="../css/home.css" />
+    <link rel="stylesheet" href="../css/functions.css" />
     <link rel="stylesheet" href="../css/navbar.css" />
-    <title>Home | MoneyWin</title>
+    <title>Taxes | MoneyWin</title>
   </head>
   <body>
     <header class="app_logo">
@@ -41,55 +42,31 @@
           <p id="home-time"></p>
         </div>
       </div>
-      <div id="home-dateview">
-        <div class="home-filter-btn">
-          <span id="home-month-filter"></span>
-          <img src="../img/chevron-down-solid.svg" alt="chevron-down" />
-        </div>
-      </div>
-      <div id="home-balanceview">
-        <div class="home-bv-items bvi-brd">
-          <span>Account Balance</span>
-          <span id="bvi-account"></span>
-        </div>
-        <div class="home-bv-items bvi-brd">
-          <span>Bills | Total</span>
-          <span id="bvi-bills"></span>
-        </div>
-      </div>
-      <div id="home-functions">
-        <a href="./services.html" class="fn-links" aria-label="Services">
-          <div class="fn-btns-div">
-            <img src="../img/lightbulb-regular.svg" alt="Services" />
-            <p>Services</p>
-          </div>
-        </a>
-        <a href="./cards.html" class="fn-links" aria-label="Cards">
-          <div class="fn-btns-div">
-            <img src="../img/credit-card-regular.svg" alt="Cards" />
-            <p>Cards</p>
-          </div>
-        </a>
-        <a href="./usd.html" class="fn-links" aria-label="USD">
-          <div class="fn-btns-div">
-            <img src="../img/mug-hot-solid.svg" alt="Others" />
-            <p>Others</p>
-          </div>
-        </a>
-        <a href="./taxes.html" class="fn-links" aria-label="Taxes">
-          <div class="fn-btns-div">
-            <img src="../img/scale-balanced-solid.svg" alt="Taxes" />
-            <p>Taxes</p>
-          </div>
-        </a>
-      </div>
-      <div id="home-movements">
-        <div id="home-lst-mv">
-          <div>
-            <span>Last Movements</span>
+      <div id="home-btn-functions">
+        <h1>Taxes</h1>
+        <div id="functions-mvi-content">
+          <div class="functions-mvi-item">
+            <button
+              id="delete-bill-${sanitize(bill.id.toString())}"
+              class="functions-mvi-delete"
+              aria-label="bill-${sanitize(bill.id.toString())}"
+            >
+              <div class="functions-mvi-icon">1</div>
+            </button>
+            <div class="functions-mvi-data">
+              <h2>Dentist</h2>
+              <div class="functions-mvi-info">
+                <span>$55,000.00</span>
+                <span>00/00/0000</span>
+                <span>Cash</span>
+              </div>
+            </div>
           </div>
         </div>
-        <div id="home-mv-list"></div>
+        <div id="functions-mvi-total">
+          <h2>Total</h2>
+          <span>$55,000.00</span>
+        </div>
       </div>
       <div id="toast-container"></div>
     </main>
@@ -175,15 +152,15 @@
   <script src="../cordova.js"></script>
   <script src="../js/database.js"></script>
   <script type="module" src="../js/index.js"></script>
-  <script src="../js/balance_db.js"></script>
-  <script type="module" src="../js/balancex.js"></script>
-  <script src="../js/bills_database.js"></script>
-  <script type="module" src="../js/billex.js"></script>
-  <script type="module" src="../js/balance.js"></script>
-  <script type="module" src="../js/saveBalances.js"></script>
+  <!-- <script src="../js/balance_db.js"></script> -->
+  <!-- <script type="module" src="../js/balancex.js"></script> -->
+  <!-- <script src="../js/bills_database.js"></script> -->
+  <!-- <script type="module" src="../js/billex.js"></script> -->
+  <!-- <script type="module" src="../js/balance.js"></script> -->
+  <!-- <script type="module" src="../js/saveBalances.js"></script> -->
   <script type="module" src="../js/homebar.js"></script>
-  <script type="module" src="../js/showBills.js"></script>
-  <script defer type="module" src="../js/deleteBills.js"></script>
-  <script type="module" src="../js/utils.js"></script>
-  <script defer type="module" src="../js/notifications.js"></script>
+  <!-- <script type="module" src="../js/showBills.js"></script> -->
+  <!-- <script defer type="module" src="../js/deleteBills.js"></script> -->
+  <!-- <script type="module" src="../js/utils.js"></script> -->
+  <!-- <script defer type="module" src="../js/notifications.js"></script> -->
 </html>
